@@ -1,0 +1,44 @@
+spring:
+    security:
+        user:
+            name: admin
+            password: admin
+            roles: ACTUATOR_ADMIN
+    application:
+        name: spring-boot-chatgpt
+    profiles:
+        active: ${SPRING_PROFILE_ACTIVE}
+
+server:
+    port: 8080
+
+chat-gpt:
+    url:
+        completion:
+    token: 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
+    model: text-davinci-003
+    temperature: 0
+    max_token: 100
+    top_p: 1
+    frequency_penalty: 0
+    presence_penalty: 0
+
+webclient:
+    config:
+        memory-buffer-size: 524288
+        timeout: 30
+        retry:
+            max-retry: 3
+            delay: 5
+
+audit:
+    connector:
+        url: http://localhost:8085/audit
+        username: audit
+        password: audit
+
+logging:
+    level:
+        root: INFO
+        com:
+            sid: INFO

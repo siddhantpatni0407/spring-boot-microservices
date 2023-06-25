@@ -1,0 +1,1217 @@
+{
+	"info": {
+		"_postman_id": "dea2bf18-8961-4d2d-ab63-4c1e5ec38938",
+		"name": "spring-boot-chatgpt",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6002209"
+	},
+	"item": [
+		{
+			"name": "MS - LOCAL",
+			"item": [
+				{
+					"name": "Ask Question",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567",
+								"type": "text"
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM",
+								"type": "text"
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/spring-boot/chat-gpt/ask?question=How many states are there in India?",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"spring-boot",
+								"chat-gpt",
+								"ask"
+							],
+							"query": [
+								{
+									"key": "question",
+									"value": "How many states are there in India?"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ChatGPT",
+			"item": [
+				{
+					"name": "List Models",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"url": {
+							"raw": "https://api.openai.com/v1/models",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"models"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Model",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"url": {
+							"raw": "https://api.openai.com/v1/models/whisper-1",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"models",
+								"whisper-1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Completions - 1",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"model\": \"gpt-3.5-turbo\",\n    \"messages\": [\n        {\n            \"role\": \"user\",\n            \"content\": \"Capital of Maharashtra?\"\n        }\n    ],\n    \"temperature\": 0.7\n}"
+						},
+						"url": {
+							"raw": "https://api.openai.com/v1/chat/completions",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"chat",
+								"completions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Completions - 2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"model\": \"gpt-3.5-turbo\",\n    \"messages\": [\n        {\n            \"role\": \"system\",\n            \"content\": \"You are a helpful assistant.\"\n        },\n        {\n            \"role\": \"user\",\n            \"content\": \"Hello!\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://api.openai.com/v1/chat/completions",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"chat",
+								"completions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Completions - 3",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"model\": \"text-davinci-003\",\n    \"prompt\": \"Capital of India?\",\n    \"max_tokens\": 7,\n    \"temperature\": 0\n}"
+						},
+						"url": {
+							"raw": "https://api.openai.com/v1/completions",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"completions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Completions - 4",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"model\": \"text-davinci-003\",\n    \"prompt\": \"Capital of India?\",\n    \"max_tokens\": 7,\n    \"temperature\": 0,\n    \"top_p\": 1,\n    \"n\": 1,\n    \"stream\": false,\n    \"logprobs\": null,\n    \"stop\": \"\\n\"\n}"
+						},
+						"url": {
+							"raw": "https://api.openai.com/v1/completions",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"completions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edits",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"model\": \"text-davinci-edit-001\",\n    \"input\": \"What day of the wek is it?\",\n    \"instruction\": \"Fix the spelling mistakes\"\n}"
+						},
+						"url": {
+							"raw": "https://api.openai.com/v1/edits",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"edits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prompt\": \"A cute baby sea otter\",\n    \"n\": 2,\n    \"size\": \"1024x1024\"\n}"
+						},
+						"url": {
+							"raw": "https://api.openai.com/v1/images/generations",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"images",
+								"generations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create image edit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "mask",
+									"type": "file",
+									"src": "mask.png"
+								},
+								{
+									"key": "prompt",
+									"value": "A cute baby sea otter wearing a beret",
+									"type": "text"
+								},
+								{
+									"key": "n",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "size",
+									"value": "1024x1024",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.openai.com/v1/images/edits",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"images",
+								"edits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create image variation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "otter.png"
+								},
+								{
+									"key": "n",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "size",
+									"value": "1024x1024",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.openai.com/v1/images/variations",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"images",
+								"variations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create embeddings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"input\": \"The food was delicious and the waiter...\",\r\n    \"model\": \"text-embedding-ada-002\"\r\n}"
+						},
+						"url": {
+							"raw": "https://api.openai.com/v1/embeddings",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"embeddings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create transcription",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/path/to/file/audio.mp3"
+								},
+								{
+									"key": "model",
+									"value": "whisper-1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.openai.com/v1/audio/transcriptions",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"audio",
+								"transcriptions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create translation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/path/to/file/german.m4a"
+								},
+								{
+									"key": "model",
+									"value": "whisper-1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.openai.com/v1/audio/translations",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"audio",
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List files",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"url": {
+							"raw": "https://api.openai.com/v1/files",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload file",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "purpose",
+									"value": "fine-tune",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "mydata.jsonl"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.openai.com/v1/files",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete file",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"url": {
+							"raw": "https://api.openai.com/v1/files/file-XjGxS3KTG0uNmNOK362iJua3",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"files",
+								"file-XjGxS3KTG0uNmNOK362iJua3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve file",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"url": {
+							"raw": "https://api.openai.com/v1/files/file-XjGxS3KTG0uNmNOK362iJua3",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"files",
+								"file-XjGxS3KTG0uNmNOK362iJua3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve file content",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"url": {
+							"raw": "https://api.openai.com/v1/files/file-XjGxS3KTG0uNmNOK362iJua3/content>file.jsonl",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"files",
+								"file-XjGxS3KTG0uNmNOK362iJua3",
+								"content>file.jsonl"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create fine-tune",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"training_file\": \"file-XGinujblHPwGLSztz8cPS8XY\"\r\n  }"
+						},
+						"url": {
+							"raw": "https://api.openai.com/v1/fine-tunes",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"fine-tunes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List fine-tunes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"url": {
+							"raw": "https://api.openai.com/v1/fine-tunes",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"fine-tunes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve fine-tune",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"url": {
+							"raw": "https://api.openai.com/v1/fine-tunes/ft-AF1WoRqd3aJAHsqc9NY7iL8F",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"fine-tunes",
+								"ft-AF1WoRqd3aJAHsqc9NY7iL8F"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel fine-tune",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"url": {
+							"raw": "https://api.openai.com/v1/fine-tunes/ft-AF1WoRqd3aJAHsqc9NY7iL8F/cancel",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"fine-tunes",
+								"ft-AF1WoRqd3aJAHsqc9NY7iL8F",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List fine-tune events",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"url": {
+							"raw": "https://api.openai.com/v1/fine-tunes/ft-AF1WoRqd3aJAHsqc9NY7iL8F/events",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"fine-tunes",
+								"ft-AF1WoRqd3aJAHsqc9NY7iL8F",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete fine-tune model",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"url": {
+							"raw": "https://api.openai.com/v1/models/curie:ft-acmeco-2021-03-03-21-44-20",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"models",
+								"curie:ft-acmeco-2021-03-03-21-44-20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create moderation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"input\": \"I want to kill them.\"\r\n  }"
+						},
+						"url": {
+							"raw": "https://api.openai.com/v1/moderations",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"moderations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create moderation Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer $OPENAI_API_KEY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security'\r\n\r\n  security:\r\n    user:\r\n      name: admin\r\n      password: '{bcrypt}$2a$10$m0cee6HmZoKST1LHcKi01OT/pf7CmQ0NWNoGF.1kpDgZ94SbIjrNm'\r\n      roles: ACTUATOR_ADMIN"
+						},
+						"url": {
+							"raw": "https://api.openai.com/v1/moderations",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openai",
+								"com"
+							],
+							"path": [
+								"v1",
+								"moderations"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
