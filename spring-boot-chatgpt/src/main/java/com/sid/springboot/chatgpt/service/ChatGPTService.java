@@ -52,6 +52,29 @@ public class ChatGPTService {
                 });
     }
 
+    public Mono<ChatGPTFinalResponse> translate(String statement, String language) {
+
+        String prompt = "Translate".concat(" ").concat(statement).concat(" ").concat("into").concat(" ").concat(language);
+
+        ChatGPTRequest chatGPTRequest = generateChatGPTRequest(prompt);
+
+        if (log.isDebugEnabled()) {
+            log.debug("translate() : chatGPTRequest -> {}", AppUtils.getJSONString(chatGPTRequest));
+        }
+
+        return chatGPTIntegrationService.invokeChatGPTAPI(chatGPTRequest)
+                .flatMap(chatGPTResponse -> {
+
+                    if (log.isInfoEnabled()) {
+                        log.info("translate() : ChatGPT API. -> Statement -> {}, Language -> {}, Request -> {} and Response -> {}", statement, language, AppUtils.getJSONString(chatGPTRequest), AppUtils.getJSONString(chatGPTResponse));
+                        log.info("translate() : ===== >>> Chat GPT - END <<< =====");
+                    }
+
+                    ChatGPTFinalResponse chatGPTFinalResponse = generateChatGPTFinalResponse(prompt, chatGPTResponse);
+                    return Mono.just(chatGPTFinalResponse);
+                });
+    }
+
     /**
      * Generate chat gpt request chat gpt request.
      *
@@ -83,8 +106,8 @@ public class ChatGPTService {
 
         return ChatGPTFinalResponse
                 .builder()
-                .question(question)
-                .answer(chatGPTResponse.getChoices().get(0).getText())
+                .request(question)
+                .response(chatGPTResponse.getChoices().get(0).getText().replace("\n", ""))
                 .build();
     }
 

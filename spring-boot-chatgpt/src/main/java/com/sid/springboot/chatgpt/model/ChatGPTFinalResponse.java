@@ -19,10 +19,10 @@ import java.util.List;
 @Builder
 public class ChatGPTFinalResponse {
 
-    @JsonProperty("question")
-    private String question;
+    @JsonProperty("request")
+    private String request;
 
-    @JsonProperty("answer")
-    private String answer;
+    @JsonProperty("response")
+    private String response;
 
 }

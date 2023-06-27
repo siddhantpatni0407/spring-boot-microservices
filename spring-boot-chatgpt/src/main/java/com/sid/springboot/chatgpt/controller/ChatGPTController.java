@@ -30,7 +30,7 @@ public class ChatGPTController {
      * @param question String
      * @return the answer of given question
      */
-    @GetMapping(value = AppConstants.ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = AppConstants.ASK_QUESTION_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ChatGPTFinalResponse> getAnswer(@RequestParam(name = "question", required = true) String question) {
 
         if (log.isInfoEnabled()) {
@@ -43,6 +43,26 @@ public class ChatGPTController {
                     if (log.isInfoEnabled()) {
                         log.info("getAnswer() : Request -> {} and Response -> {}", question, AppUtils.getJSONString(chatGPTFinalResponse));
                         log.info("getAnswer() : ===== >>> Chat GPT - END <<< =====");
+                    }
+
+                    return Mono.just(chatGPTFinalResponse);
+                });
+    }
+
+    @GetMapping(value = AppConstants.TRANSLATE_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ChatGPTFinalResponse> translate(@RequestParam(name = "statement", required = true) String statement,
+                                                @RequestParam(name = "language", required = true) String language) {
+
+        if (log.isInfoEnabled()) {
+            log.info("translate() : ===== >>> Chat GPT - START <<< =====");
+        }
+
+        return chatGPTService.translate(statement, language)
+                .flatMap(chatGPTFinalResponse -> {
+
+                    if (log.isInfoEnabled()) {
+                        log.info("translate() : Statement -> {}, Language -> {} and Response -> {}", statement, language, AppUtils.getJSONString(chatGPTFinalResponse));
+                        log.info("translate() : ===== >>> Chat GPT - END <<< =====");
                     }
 
                     return Mono.just(chatGPTFinalResponse);
