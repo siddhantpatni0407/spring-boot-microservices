@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+        <property file="dbchangelog/dbchangelog-property-dev.yml" context="dev"/>
+        <property file="dbchangelog/dbchangelog-property-test.yml" context="test"/>
+        <property file="dbchangelog/dbchangelog-property-acc.yml" context="acc"/>
+        <property file="dbchangelog/dbchangelog-property-prod.yml" context="prod"/>
+
+        <!-- Schema/Table creation -->
+        <changeSet id="1" author="postgres" context="dev">
+            <sqlFile path="dbchangelog/dbchangelog-schema-init.sql"/>
+        </changeSet>
+        <changeSet id="2" author="postgres" context="test">
+            <sqlFile path="dbchangelog/dbchangelog-schema-init.sql"/>
+        </changeSet>
+        <changeSet id="3" author="postgres" context="acc">
+            <sqlFile path="dbchangelog/dbchangelog-schema-init.sql"/>
+        </changeSet>
+        <changeSet id="4" author="postgres" context="prod">
+            <sqlFile path="dbchangelog/dbchangelog-schema-init.sql"/>
+        </changeSet>
+</databaseChangeLog>
