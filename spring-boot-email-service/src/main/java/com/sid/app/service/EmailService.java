@@ -1,5 +1,6 @@
 package com.sid.app.service;
 
+import com.sid.app.constant.AppConstants;
 import com.sid.app.entity.EmailTransaction;
 import com.sid.app.model.EmailRequest;
 import com.sid.app.repository.EmailRepository;
@@ -65,6 +66,7 @@ public class EmailService {
     }
 
     public InternetAddress[] getInternetAddresses(List<String> emails) {
+
         return emails.stream()
                 .map(email -> {
                     try {
@@ -75,12 +77,14 @@ public class EmailService {
                     }
                 })
                 .toArray(InternetAddress[]::new);
+
     }
 
     public void addRecipients(MimeMessageHelper helper, EmailRequest emailRequestDTO) throws MessagingException {
+
         InternetAddress[] toAddresses = getInternetAddresses(emailRequestDTO.getTo());
         helper.setTo(toAddresses);
-        helper.setFrom("siddhant4patni@gmail.com");
+        helper.setFrom(AppConstants.EMAIL_FROM);
         if (!CollectionUtils.isEmpty(emailRequestDTO.getCc())) {
             InternetAddress[] ccAddresses = getInternetAddresses(emailRequestDTO.getCc());
             helper.setCc(ccAddresses);
@@ -89,9 +93,11 @@ public class EmailService {
             InternetAddress[] bccAddresses = getInternetAddresses(emailRequestDTO.getBcc());
             helper.setBcc(bccAddresses);
         }
+
     }
 
     public Mono<MimeMessage> createMimeMessage(EmailRequest emailRequestDTO, List<FilePart> attachment, EmailTransaction emailTransaction) {
+
         return Mono.fromCallable(() -> {
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -120,14 +126,17 @@ public class EmailService {
             }
             return message;
         });
+
     }
 
     public Mono<Void> sendMimeMessage(MimeMessage mimeMessage) {
+
         Mono<Void> monoRes = Mono.fromRunnable(() -> javaMailSender.send(mimeMessage));
         if (log.isInfoEnabled()) {
             log.info("sendMimeMessage() : Request Processed with CorrelationId = {}", UUID.randomUUID().toString());
         }
         return monoRes;
+
     }
 
     public Mono<EmailTransaction> saveEmailTransaction(EmailTransaction emailTransaction, Status status, String failureDescription) {
@@ -140,18 +149,21 @@ public class EmailService {
         return Mono.just(emailRepository.save(emailTransaction))
                 .doOnSuccess(saveEmailTransaction -> {
                     if (log.isInfoEnabled()) {
-                        log.info("saveEmailTransaction() : Record saved with CorrelationId = {}", UUID.randomUUID());
+                        log.info("saveEmailTransaction() : Record saved with CorrelationId = {}", saveEmailTransaction.getCorrelationID());
                     }
                 });
+
     }
 
     public Mono<EmailTransaction> handleSendEmailError(Throwable throwable, EmailTransaction emailTransaction) {
+
         String failureDescription = Optional.ofNullable(throwable.getCause())
                 .map(Throwable::getMessage)
                 .orElse("Internal Server Error");
         return saveEmailTransaction(emailTransaction, Status.FAILURE, failureDescription)
                 .doOnNext(s -> log.error("{}, while sending the email with CorrelationId = {}", failureDescription, UUID.randomUUID()))
                 .then(Mono.error(AppServiceErrors.MAILING_ERROR.newEx()));
+
     }
 
 }

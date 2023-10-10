@@ -44,7 +44,7 @@ spring:
         tls: true
         domain: gmail.com
         username: siddhant4patni@gmail.com
-        password: vtfbufeybxbpzoht
+        password: mrufnkepqmoqchvv
         default-encoding: UTF-8
         properties:
             mail:

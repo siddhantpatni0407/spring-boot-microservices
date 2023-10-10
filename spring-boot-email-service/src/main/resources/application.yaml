@@ -1,4 +1,8 @@
 spring:
+    application:
+        name: spring-boot-email-service
+    profiles:
+      active: ${SPRING_PROFILES_ACTIVE}
     security:
         user:
             name: admin
@@ -44,7 +48,7 @@ spring:
         tls: true
         domain: gmail.com
         username: siddhant4patni@gmail.com
-        password: vtfbufeybxbpzoht
+        password: mrufnkepqmoqchvv
         default-encoding: UTF-8
         properties:
             mail:
