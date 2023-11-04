@@ -10,7 +10,7 @@ public class AppConstants {
     /**
      * The constant ENDPOINT.
      */
-    public static final String ASK_QUESTION_ENDPOINT = "/api/v1/spring-boot/chat-gpt/ask";
-    public static final String TRANSLATE_ENDPOINT = "/api/v1/spring-boot/chat-gpt/translate";
+    public static final String ASK_QUESTION_ENDPOINT = "/api/v1/chat-gpt-integration/ask";
+    public static final String TRANSLATE_ENDPOINT = "/api/v1/chat-gpt-integration/translate";
 
 }

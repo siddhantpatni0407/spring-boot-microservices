@@ -8,7 +8,7 @@ public class AppConstants {
     /**
      * The constant ENDPOINT.
      */
-    public static final String EMAIL_ENDPOINT = "/api/v1/spring-boot/email/send";
+    public static final String EMAIL_ENDPOINT = "/api/v1/email-service/trigger";
 
     public static final String JASYPT_SALT_GENERATOR_CLASS_NAME = "org.jasypt.salt.ZeroSaltGenerator";
 
