@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * The type Spring boot chatgpt application.
  */
 @SpringBootApplication
-public class SpringBootChatgptApplication {
+public class ChatGPTApplication {
 
     /**
      * The entry point of application.
@@ -15,7 +15,7 @@ public class SpringBootChatgptApplication {
      * @param args the input arguments
      */
     public static void main(String[] args) {
-		SpringApplication.run(SpringBootChatgptApplication.class, args);
+		SpringApplication.run(ChatGPTApplication.class, args);
 	}
 
 }

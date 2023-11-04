@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 /**
- * The type Chat gpt controller.
+ * The type ChatGPT controller.
  *
  * @author Siddhant Patni
  */
