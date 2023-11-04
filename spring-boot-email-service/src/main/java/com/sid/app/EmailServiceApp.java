@@ -10,4 +10,13 @@ public class EmailServiceApp {
         SpringApplication.run(EmailServiceApp.class, args);
     }
 
+    /*
+    // To remove the Banner
+    public static void main(String[] args) {
+        new SpringApplicationBuilder(EmailServiceApp.class)
+                .bannerMode(Banner.Mode.OFF)
+                .run(args);
+    }
+    */
+
 }

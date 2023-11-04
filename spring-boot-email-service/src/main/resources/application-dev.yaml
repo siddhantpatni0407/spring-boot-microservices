@@ -64,7 +64,7 @@ spring:
     #Attachment Configuration
     webflux:
         multipart:
-            max-disk-usage-per-part: 10MB
+            max-disk-usage-per-part: 100MB
             max-files-allowed: 5
 server:
     port: 8080
