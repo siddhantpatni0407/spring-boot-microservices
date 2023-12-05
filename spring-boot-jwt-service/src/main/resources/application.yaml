@@ -1,0 +1,72 @@
+spring:
+    main:
+        banner-mode: #off
+    banner:
+        location: classpath:banner.txt
+    security:
+        user:
+            name: admin
+            password: admin
+            roles: ACTUATOR_ADMIN
+    application:
+        name: spring-boot-jwt-service
+    profiles:
+        active: ${SPRING_PROFILE_ACTIVE}
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/jwt_db
+        username: postgres
+        password: root
+        properties:
+            charSet: UTF-8
+        hikari:
+            minimumIdle: 2
+            maximumPoolSize: 25
+            idleTimeout: 10000
+            poolName: HikariCP
+            maxLifetime: 7200000
+            connectionTimeout: 30000
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+        properties:
+            hibernate:
+                default_schema: dev
+                jdbc:
+                    time_zone: UTC
+                    lob:
+                        # silence the 'wall-of-text' - unnecessary exception throw about blob types
+                        non_contextual_creation: true
+                globally_quoted_identifiers: true
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+                format_sql: true
+
+server:
+    port: 8080
+
+#APP Properties
+jwt:
+    secret: 7CA6AFDA-B94C-4CCF-AC45-7C802BD0745F
+
+encryptionKey: abc@123
+
+webclient:
+    config:
+        memory-buffer-size: 524288
+        timeout: 30
+        retry:
+            max-retry: 3
+            delay: 5
+
+audit:
+    connector:
+        url: http://localhost:8085/audit
+        username: audit
+        password: audit
+
+logging:
+    level:
+        root: INFO
+        com:
+            sid: INFO
