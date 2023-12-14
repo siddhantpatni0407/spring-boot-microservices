@@ -1,0 +1,29 @@
+spring:
+    main:
+        banner-mode: #off
+    banner:
+        location: classpath:banner.txt
+    security:
+        user:
+            name: admin
+            password: admin
+
+server:
+    port: 8080
+
+jolt:
+    spec-file: /jolt_spec_mapper.json
+    input-file: C:/Logs/jolt_input.json
+    output-file: C:/Logs/jolt_output.json
+
+audit:
+    connector:
+        url: http://localhost:8085/audit
+        username: audit
+        password: audit
+
+logging:
+    level:
+        root: INFO
+        com:
+            sid: INFO
