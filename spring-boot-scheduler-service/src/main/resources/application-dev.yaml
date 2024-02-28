@@ -1,0 +1,31 @@
+spring:
+  main:
+    banner-mode: #off
+  banner:
+    location: classpath:banner.txt
+  security:
+    user:
+      name: admin
+      password: admin
+  output:
+    ansi:
+      enabled: always
+
+server:
+  port: 8080
+
+cron:
+  expression:
+    value: "* 0/1 * * * *"
+
+audit:
+  connector:
+    url: http://localhost:8085/audit
+    username: audit
+    password: audit
+
+logging:
+  level:
+    root: INFO
+    com:
+      sid: INFO
