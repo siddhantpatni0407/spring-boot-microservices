@@ -14,8 +14,7 @@ public class SchedulerService {
     private ThreadPoolTaskScheduler taskScheduler;*/
 
     @Scheduled(cron = "${cron.expression.value}")
-    public void schedulerDemo() {
-
+    public void scheduler() {
         if (log.isInfoEnabled()) {
             log.info("schedulerDemo() : Scheduler demo : {}", Calendar.getInstance().getTime());
         }
