@@ -10,6 +10,10 @@ spring:
   output:
     ansi:
       enabled: always
+  task:
+    scheduling:
+      pool:
+        size: 10
 
 server:
   port: 8080
