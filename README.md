@@ -18,3 +18,6 @@ Spring Boot Microservices
 
 #   6. spring-boot-batch-processing-service
    - Spring Boot app using Spring Batch and Spring reactive for the batch processing.  
+
+#   7. spring-boot-batch-partitioning-service
+   - Spring Boot app using Spring Batch with partitioning and Spring reactive for the batch processing.  
