@@ -21,3 +21,6 @@ Spring Boot Microservices
 
 #   7. spring-boot-batch-partitioning-service
    - Spring Boot app using Spring Batch with partitioning and Spring reactive for the batch processing.  
+   
+#   8. spring-boot-batch-fault-tolerance-service
+   - Spring Boot app using Spring Batch with fault tolerance and Spring reactive for the batch processing.
