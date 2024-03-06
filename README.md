@@ -27,3 +27,6 @@ Spring Boot Microservices
 
 #   9. spring-boot-batch-file-upload-service
    - Spring Boot app using Spring Batch with dynamic file upload and Spring reactive for the batch processing.
+   
+#   10. spring-boot-employee-mgmt-service
+   - Spring Boot App for Employee Management using Spring Reactive.
