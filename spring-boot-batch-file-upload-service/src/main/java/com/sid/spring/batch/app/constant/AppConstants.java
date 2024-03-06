@@ -14,8 +14,6 @@ public class AppConstants {
     /**
      * Below Constants are used for File.
      */
-    public static final String FILE_PATH = "src/main/resources/customers1.csv";
-    public static final String CSV_FILE_PATH = "src/main/resources/siddhant.csv";
     public static final String FILE_STORAGE_DIRECTORY = "C:\\Users\\Siddhant Patni\\Documents\\batch_files\\";
 
     /**
