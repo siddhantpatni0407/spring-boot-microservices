@@ -3,6 +3,7 @@ package com.sid.spring.batch.app.controller;
 import com.sid.spring.batch.app.constant.AppConstants;
 import com.sid.spring.batch.app.entity.Customer;
 import com.sid.spring.batch.app.service.DataGeneratorService;
+import com.sid.spring.batch.app.utils.ApplicationUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.*;
 import org.springframework.batch.core.launch.JobLauncher;
@@ -22,6 +23,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @Slf4j
@@ -91,7 +93,12 @@ public class JobController {
         if (log.isInfoEnabled()) {
             log.info("getAllData() : Get All Data - START");
         }
-        return dataGeneratorService.getAllData();
+        List<Customer> customerList = dataGeneratorService.getAllData();
+        if (log.isInfoEnabled()) {
+            log.info("getAllData() : allData -> {}", ApplicationUtils.getJSONString(customerList));
+            log.info("getAllData() : Get All Data - END");
+        }
+        return customerList;
     }
 
 }
