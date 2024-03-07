@@ -61,14 +61,14 @@ public class EmployeeController {
     @GetMapping(value = AppConstants.EMPLOYEE_ENDPOINT + "/" + "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     private Mono<Employee> getEmployeeById(@PathVariable Long id) {
         if (log.isInfoEnabled()) {
-            log.info("getEmployeeById() : Get Employee - START");
+            log.info("getEmployeeById() : Get Employee By Id- START");
         }
         return employeeService.getEmployeeById(id)
                 .flatMap(employee -> {
                     if (log.isInfoEnabled()) {
-                        log.info("getEmployeeById() : Get Employee API. Request Param -> {} and Response -> {}",
+                        log.info("getEmployeeById() : Get Employee By Id API. Request Param -> {} and Response -> {}",
                                 id, ApplicationUtils.getJSONString(employee));
-                        log.info("getEmployeeById() : Get Employee - END");
+                        log.info("getEmployeeById() : Get Employee By Id - END");
                     }
                     return Mono.just(employee);
                 });

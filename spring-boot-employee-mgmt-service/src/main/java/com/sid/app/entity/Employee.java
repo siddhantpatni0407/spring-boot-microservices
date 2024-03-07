@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 /**
  * @author Siddhant Patni
@@ -46,6 +47,6 @@ public class Employee {
     private String country;
 
     @Column(name = "DOB")
-    private String dob;
+    private Date dob;
 
 }
