@@ -36,7 +36,7 @@ Spring Boot App for Employee Management using Spring Reactive.
     "gender": "male",
     "contact": "7588811796",
     "country": "India",
-    "dob": "04/07/1995"
+    "dob": "1995-07-04"
 }
 ````
 
@@ -53,7 +53,7 @@ Spring Boot App for Employee Management using Spring Reactive.
     "gender": "male",
     "contact": "7588811796",
     "country": "India",
-    "dob": "04/07/1995"
+    "dob": "1995-07-04"
 }
 ````
 
@@ -75,7 +75,7 @@ Spring Boot App for Employee Management using Spring Reactive.
     "gender": "male",
     "contact": "7588811796",
     "country": "India",
-    "dob": "04/07/1995"
+    "dob": "1995-07-04"
 }
 ````
 
@@ -97,7 +97,7 @@ Spring Boot App for Employee Management using Spring Reactive.
     "gender": "male",
     "contact": "7588811796",
     "country": "India",
-    "dob": "04/07/1995"
+    "dob": "1995-07-04"
 }
 ````
 
@@ -116,7 +116,7 @@ Spring Boot App for Employee Management using Spring Reactive.
     "gender": "male",
     "contact": "7588811796",
     "country": "India",
-    "dob": "04/07/1995"
+    "dob": "1995-07-04"
 }
 ````
 
@@ -133,7 +133,7 @@ Spring Boot App for Employee Management using Spring Reactive.
     "gender": "male",
     "contact": "7588811796",
     "country": "India",
-    "dob": "04/07/1995"
+    "dob": "1995-07-04"
 }
 ````
 
