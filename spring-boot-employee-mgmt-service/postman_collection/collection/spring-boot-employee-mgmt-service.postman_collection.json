@@ -1,0 +1,338 @@
+{
+	"info": {
+		"_postman_id": "0d49b81c-c038-42ba-99ed-8110975cc473",
+		"name": "spring-boot-employee-mgmt-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6002209"
+	},
+	"item": [
+		{
+			"name": "MS - LOCAL",
+			"item": [
+				{
+					"name": "Add Employee",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Priyanka\",\r\n    \"lastName\": \"Patni\",\r\n    \"department\": \"Finance\",\r\n    \"salary\": 250000,\r\n    \"email\": \"priyanka.patni@gmail.com\",\r\n    \"gender\": \"female\",\r\n    \"contactNo\": \"7276369171\",\r\n    \"country\": \"India\",\r\n    \"dob\": \"1996-02-08\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/employee-mgmt-service/employee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"employee-mgmt-service",
+								"employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Employee",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/employee-mgmt-service/employee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"employee-mgmt-service",
+								"employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Employee",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/employee-mgmt-service/employee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"employee-mgmt-service",
+								"employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Employee",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Priyanka\",\r\n    \"lastName\": \"Patni\",\r\n    \"department\": \"Finance\",\r\n    \"salary\": 250000,\r\n    \"email\": \"priyanka.patni@gmail.com\",\r\n    \"gender\": \"female\",\r\n    \"contactNo\": \"7276369171\",\r\n    \"country\": \"India\",\r\n    \"dob\": \"1996-02-08\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/employee-mgmt-service/employee/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"employee-mgmt-service",
+								"employee",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Employee",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/employee-mgmt-service/employee/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"employee-mgmt-service",
+								"employee",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
