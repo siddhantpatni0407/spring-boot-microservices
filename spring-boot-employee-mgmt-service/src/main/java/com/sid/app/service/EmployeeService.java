@@ -60,7 +60,7 @@ public class EmployeeService {
                     employee.setSalary(employeeRequest.getSalary());
                     employee.setEmail(employeeRequest.getEmail());
                     employee.setGender(employeeRequest.getGender());
-                    employee.setContactNo(employeeRequest.getContactNo());
+                    employee.setContact(employeeRequest.getContact());
                     employee.setCountry(employeeRequest.getCountry());
                     employee.setDob(employeeRequest.getDob());
                     return employeeRepository.save(employee);
@@ -81,7 +81,7 @@ public class EmployeeService {
         if (log.isInfoEnabled()) {
             log.info("deleteEmployee() : User with id : {} has been deleted successfully", id);
         }
-        return Mono.just("User with id " + id + " has been deleted success.");
+        return Mono.just("User with id " + id + " has been deleted successfully.");
     }
 
 }

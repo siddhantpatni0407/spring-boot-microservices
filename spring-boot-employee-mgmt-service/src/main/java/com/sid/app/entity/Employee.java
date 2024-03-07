@@ -40,7 +40,7 @@ public class Employee {
     private String gender;
 
     @Column(name = "CONTACT")
-    private String contactNo;
+    private String contact;
 
     @Column(name = "COUNTRY")
     private String country;
