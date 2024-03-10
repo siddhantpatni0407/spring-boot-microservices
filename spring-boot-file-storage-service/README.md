@@ -6,7 +6,8 @@ Spring Boot App to Store and download the file from database.
     1. Upload File
     2. Download File
     3. Get all file details 
+    4. Delete File
 
 ### SQL Queries:
 
-- select * from dev.fileDetails;
+- select * from dev.file_details;

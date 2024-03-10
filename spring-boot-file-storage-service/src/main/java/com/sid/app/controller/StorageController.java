@@ -1,22 +1,24 @@
 package com.sid.app.controller;
 
 import com.sid.app.constant.AppConstants;
+import com.sid.app.entity.FileDetails;
 import com.sid.app.model.FileData;
+import com.sid.app.model.Response;
 import com.sid.app.service.StorageService;
 import com.sid.app.utils.ApplicationUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Siddhant Patni
@@ -30,37 +32,38 @@ public class StorageController {
     private StorageService storageService;
 
     @PostMapping(value = AppConstants.FILE_UPLOAD_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> uploadFile(@RequestParam("image") MultipartFile file) throws IOException {
+    public ResponseEntity<Response> uploadFile(@RequestParam("image") MultipartFile file) throws Exception {
         if (log.isInfoEnabled()) {
-            log.info("uploadImage() : Upload FileDetails - START");
+            log.info("uploadImage() : Upload File Details - START");
         }
-        String uploadImage = String.valueOf(storageService.uploadImage(file));
+        Response response = storageService.uploadImage(file);
 
         if (log.isInfoEnabled()) {
-            log.info("uploadImage() : uploadImage -> {}", uploadImage);
-            log.info("uploadImage() : Upload FileDetails - END");
+            log.info("uploadImage() : response -> {}", ApplicationUtils.getJSONString(response));
+            log.info("uploadImage() : Upload File Details - END");
         }
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(uploadImage);
+                .body(response);
     }
 
-    @GetMapping(value = AppConstants.FILE_DOWNLOAD_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = AppConstants.FILE_DOWNLOAD_ENDPOINT)
     public ResponseEntity<?> downloadFile(@RequestParam(value = "fileName") String fileName) {
         if (log.isInfoEnabled()) {
             log.info("downloadImage() : Download FileDetails - START");
         }
-        byte[] imageData = storageService.downloadImage(fileName);
+        FileDetails fileDetails = storageService.downloadImage(fileName);
+
         if (log.isInfoEnabled()) {
-            log.info("downloadImage() : imageData -> {}", imageData);
+            log.info("downloadImage() : imageData -> {}", ApplicationUtils.getJSONString(fileDetails));
             log.info("downloadImage() : Download FileDetails - END");
         }
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .contentType(MediaType.valueOf(MediaType.IMAGE_PNG_VALUE))
-                .contentType(MediaType.valueOf(MediaType.IMAGE_JPEG_VALUE))
-                .body(imageData);
+                .contentType(MediaType.parseMediaType(fileDetails.getFileType()))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "fileName=\"" + fileDetails.getName() + "\"")
+                .body(new ByteArrayResource(fileDetails.getFileData()));
 
     }
 
@@ -79,6 +82,24 @@ public class StorageController {
                 .status(HttpStatus.OK)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(fileData);
+
+    }
+
+    @DeleteMapping(value = AppConstants.FILE_DELETE_ENDPOINT + "/" + "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    private ResponseEntity<Response> deleteFile(@PathVariable Long id) {
+        if (log.isInfoEnabled()) {
+            log.info("deleteEmployee() : Delete File - START");
+        }
+        Response response = storageService.deleteFile(id);
+
+        if (log.isInfoEnabled()) {
+            log.info("deleteEmployee() : response -> {}", ApplicationUtils.getJSONString(response));
+            log.info("deleteEmployee() : Delete File - END");
+        }
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(response);
 
     }
 

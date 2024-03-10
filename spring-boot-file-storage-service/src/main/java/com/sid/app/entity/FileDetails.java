@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -12,7 +13,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "File_Data")
+@Table(name = "File_Details")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,10 +22,10 @@ public class FileDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name = "file_name")
-    private String fileName;
+    private String name;
 
     @Column(name = "file_type")
     private String fileType;
@@ -32,5 +33,8 @@ public class FileDetails {
     @Lob
     @Column(name = "file_data")
     private byte[] fileData;
+
+    @Column(name = "file_size")
+    private long fileSize;
 
 }

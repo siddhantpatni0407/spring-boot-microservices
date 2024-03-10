@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface StorageRepository extends JpaRepository<FileDetails, Long> {
 
-    Optional<FileDetails> findByName(String fileName);
+    FileDetails findByName(String fileName);
 
 
 }

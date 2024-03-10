@@ -17,13 +17,19 @@ import lombok.*;
 public class FileData {
 
     @JsonProperty("id")
-    private Long id;
+    private long id;
 
     @JsonProperty("fileName")
     private String name;
 
     @JsonProperty("fileType")
     private String type;
+
+    @JsonProperty("fileDownloadURL")
+    private String fileDownloadURL;
+
+    @JsonProperty("fileSize")
+    private String fileSize;
 
     @JsonProperty("fileData")
     private String fileData;
