@@ -15,7 +15,7 @@ spring:
     # DB configuration
     datasource:
         driver-class-name: org.postgresql.Driver
-        url: jdbc:postgresql://localhost:5432/email_db
+        url: jdbc:postgresql://localhost:5432/file_storage_db
         username: postgres
         password: root
         properties:
@@ -45,11 +45,12 @@ spring:
                 globally_quoted_identifiers: true
                 dialect: org.hibernate.dialect.PostgreSQLDialect
                 format_sql: true
-    batch:
-        job:
-            enabled: false
-        jdbc:
-            initialize-schema: ALWAYS
+    servlet:
+        multipart:
+            enabled: true
+            file-size-threshold: 2KB
+            max-file-size: 200MB
+            max-request-size: 215MB
 
 server:
     port: 8080

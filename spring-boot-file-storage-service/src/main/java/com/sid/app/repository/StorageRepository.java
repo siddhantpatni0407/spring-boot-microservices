@@ -1,6 +1,6 @@
 package com.sid.app.repository;
 
-import com.sid.app.entity.Image;
+import com.sid.app.entity.FileDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,8 +10,9 @@ import java.util.Optional;
  * @author Siddhant Patni
  */
 @Repository
-public interface StorageRepository extends JpaRepository<Image, Long> {
+public interface StorageRepository extends JpaRepository<FileDetails, Long> {
 
-    Optional<Image> findByName(String fileName);
+    Optional<FileDetails> findByName(String fileName);
+
 
 }

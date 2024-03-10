@@ -12,25 +12,25 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "Image_Data")
+@Table(name = "File_Data")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Image {
+public class FileDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "image_name")
+    @Column(name = "file_name")
     private String name;
 
-    @Column(name = "image_type")
+    @Column(name = "file_type")
     private String type;
 
     @Lob
-    @Column(name = "image_data")
-    private byte[] imageData;
+    @Column(name = "file_data")
+    private byte[] fileData;
 
 }

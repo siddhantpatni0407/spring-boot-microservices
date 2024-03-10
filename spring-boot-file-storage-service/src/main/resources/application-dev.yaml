@@ -43,11 +43,12 @@ spring:
                         non_contextual_creation: true
                 globally_quoted_identifiers: true
                 format_sql: true
-    batch:
-        job:
-            enabled: false
-        jdbc:
-            initialize-schema: ALWAYS
+    servlet:
+      multipart:
+        enabled: true
+        file-size-threshold: 2KB
+        max-file-size: 200MB
+        max-request-size: 215MB
 
 server:
     port: 8080
