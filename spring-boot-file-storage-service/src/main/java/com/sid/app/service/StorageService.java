@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
+@SuppressWarnings("PMD")
 public class StorageService {
 
 
@@ -47,10 +48,10 @@ public class StorageService {
         return images;
     }
 
-    public List<FileData> getAllFileData() {
+    public List<FileData> getAllFileDetails() {
         List<FileDetails> repositoryData = repository.findAll();
         if (log.isInfoEnabled()) {
-            log.info("getAllFileData() : repositoryData -> {}", ApplicationUtils.getJSONString(repositoryData));
+            log.info("getAllFileDetails() : repositoryData -> {}", ApplicationUtils.getJSONString(repositoryData));
         }
         List<FileData> fileData = repositoryData
                 .stream()

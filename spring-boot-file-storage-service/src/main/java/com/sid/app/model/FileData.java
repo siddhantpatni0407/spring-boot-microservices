@@ -13,6 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@SuppressWarnings("PMD")
 public class FileData {
 
     @JsonProperty("id")

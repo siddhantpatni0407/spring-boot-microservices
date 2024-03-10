@@ -30,7 +30,7 @@ public class StorageController {
     private StorageService storageService;
 
     @PostMapping(value = AppConstants.FILE_UPLOAD_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file) throws IOException {
+    public ResponseEntity<?> uploadFile(@RequestParam("image") MultipartFile file) throws IOException {
         if (log.isInfoEnabled()) {
             log.info("uploadImage() : Upload FileDetails - START");
         }
@@ -47,7 +47,7 @@ public class StorageController {
     }
 
     @GetMapping(value = AppConstants.FILE_DOWNLOAD_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> downloadImage(@RequestParam(value = "fileName") String fileName) {
+    public ResponseEntity<?> downloadFile(@RequestParam(value = "fileName") String fileName) {
         if (log.isInfoEnabled()) {
             log.info("downloadImage() : Download FileDetails - START");
         }
@@ -65,15 +65,15 @@ public class StorageController {
     }
 
     @GetMapping(value = AppConstants.ALL_FILES_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<FileData>> getAllFileData() {
+    public ResponseEntity<List<FileData>> getAllFileDetails() {
         if (log.isInfoEnabled()) {
-            log.info("getAllFileData() : Get all file details API - START");
+            log.info("getAllFileDetails() : Get all file details API - START");
         }
-        List<FileData> fileData = storageService.getAllFileData();
+        List<FileData> fileData = storageService.getAllFileDetails();
 
         if (log.isInfoEnabled()) {
-            log.info("getAllFileData() : fileData -> {}", ApplicationUtils.getJSONString(fileData));
-            log.info("getAllFileData() : Get all file details API - END");
+            log.info("getAllFileDetails() : fileData -> {}", ApplicationUtils.getJSONString(fileData));
+            log.info("getAllFileDetails() : Get all file details API - END");
         }
         return ResponseEntity
                 .status(HttpStatus.OK)
