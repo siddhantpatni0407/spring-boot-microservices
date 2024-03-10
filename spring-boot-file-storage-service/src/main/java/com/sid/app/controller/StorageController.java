@@ -46,11 +46,11 @@ public class StorageController {
     }
 
     @GetMapping(value = AppConstants.FILE_DOWNLOAD_ENDPOINT)
-    public ResponseEntity<?> downloadFile(@RequestParam(value = "fileName") String fileName) {
+    public ResponseEntity<?> downloadFile(@RequestParam(value = "id") long id) {
         if (log.isInfoEnabled()) {
             log.info("downloadImage() : Download FileDetails - START");
         }
-        FileDetails fileDetails = storageService.downloadImage(fileName);
+        FileDetails fileDetails = storageService.downloadImage(id);
 
         if (log.isInfoEnabled()) {
             log.info("downloadImage() : imageData -> {}", ApplicationUtils.getJSONString(fileDetails));

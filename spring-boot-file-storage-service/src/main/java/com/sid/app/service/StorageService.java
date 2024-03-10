@@ -57,9 +57,14 @@ public class StorageService {
         return response;
     }
 
-    public FileDetails downloadImage(String fileName) {
-        FileDetails dbFileData = repository.findByName(fileName);
-        dbFileData.setFileData(ApplicationUtils.decompressImage(dbFileData.getFileData()));
+    public FileDetails downloadImage(long id) {
+        FileDetails dbFileData = repository.findById(id);
+        if (!ObjectUtils.isEmpty(dbFileData)) {
+            dbFileData.setFileData(ApplicationUtils.decompressImage(dbFileData.getFileData()));
+        } else {
+            throw new ResourceNotFoundException(id);
+        }
+
         //byte[] images = ApplicationUtils.decompressImage(dbFileData.get().getFileData());
         return dbFileData;
     }
