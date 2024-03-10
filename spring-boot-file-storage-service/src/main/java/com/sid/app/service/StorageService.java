@@ -31,8 +31,8 @@ public class StorageService {
         FileDetails fileDetails = repository
                 .save(FileDetails
                         .builder()
-                        .name(file.getOriginalFilename())
-                        .type(file.getContentType())
+                        .fileName(file.getOriginalFilename())
+                        .fileType(file.getContentType())
                         .fileData(ApplicationUtils.compressImage(file.getBytes()))
                         .build());
 
@@ -58,8 +58,8 @@ public class StorageService {
                 .map(fileDetails -> {
                     FileData fileData1 = new FileData();
                     fileData1.setId(fileDetails.getId());
-                    fileData1.setName(fileDetails.getName());
-                    fileData1.setType(fileDetails.getType());
+                    fileData1.setName(fileDetails.getFileName());
+                    fileData1.setType(fileDetails.getFileType());
                     //fileData1.setFileData(Arrays.toString(fileDetails.getImageData()));
                     return fileData1;
                 }).collect(Collectors.toList());

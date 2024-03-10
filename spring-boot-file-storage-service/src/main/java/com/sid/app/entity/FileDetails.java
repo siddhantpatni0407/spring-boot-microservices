@@ -24,10 +24,10 @@ public class FileDetails {
     private Long id;
 
     @Column(name = "file_name")
-    private String name;
+    private String fileName;
 
     @Column(name = "file_type")
-    private String type;
+    private String fileType;
 
     @Lob
     @Column(name = "file_data")
