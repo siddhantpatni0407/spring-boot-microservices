@@ -1,0 +1,356 @@
+{
+	"info": {
+		"_postman_id": "01b201be-8573-43f6-a11f-8aa3a2cf5a22",
+		"name": "spring-boot-jpa-pagination-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6002209"
+	},
+	"item": [
+		{
+			"name": "MS - LOCAL",
+			"item": [
+				{
+					"name": "Add Products",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/jpa-pagination-service/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"jpa-pagination-service",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/jpa-pagination-service/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"jpa-pagination-service",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products with Sort",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/jpa-pagination-service/products/sort?field=price",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"jpa-pagination-service",
+								"products",
+								"sort"
+							],
+							"query": [
+								{
+									"key": "field",
+									"value": "price"
+								},
+								{
+									"key": "field",
+									"value": "quantity",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products with Pagination",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/jpa-pagination-service/products/pagination?offset=0&pageSize=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"jpa-pagination-service",
+								"products",
+								"pagination"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products with Pagination & Sort",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/jpa-pagination-service/products/paginationAndSort?offset=0&pageSize=10&field=price",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"jpa-pagination-service",
+								"products",
+								"paginationAndSort"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								},
+								{
+									"key": "field",
+									"value": "price"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
