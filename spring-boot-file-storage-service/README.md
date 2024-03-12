@@ -8,6 +8,12 @@ Spring Boot App to Store and download the file from database.
     3. Get all file details 
     4. Delete File
 
+### Front End App Details :
+
+- App Name - file-storage-ui
+- Platform - ReactJS
+- URL - http://localhost:3000
+
 ### SQL Queries:
 
 - select * from dev.file_details;

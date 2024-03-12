@@ -57,7 +57,7 @@ public class StorageService {
         return response;
     }
 
-    public FileDetails downloadImage(long id) {
+    public FileDetails downloadFile(long id) {
         FileDetails dbFileData = repository.findById(id);
         if (!ObjectUtils.isEmpty(dbFileData)) {
             dbFileData.setFileData(ApplicationUtils.decompressImage(dbFileData.getFileData()));
@@ -82,7 +82,7 @@ public class StorageService {
                     fileData1.setId(fileDetails.getId());
                     fileData1.setName(fileDetails.getName());
                     fileData1.setType(fileDetails.getFileType());
-                    fileData1.setFileDownloadURL(ServletUriComponentsBuilder.fromCurrentContextPath().path(AppConstants.FILE_DOWNLOAD_ENDPOINT).queryParam("fileName", fileDetails.getName()).toUriString());
+                    fileData1.setFileDownloadURL(ServletUriComponentsBuilder.fromCurrentContextPath().path(AppConstants.FILE_DOWNLOAD_ENDPOINT).queryParam("id", fileDetails.getId()).toUriString());
                     fileData1.setFileSize(ApplicationUtils.getFileSize(fileDetails.getFileSize()));
                     return fileData1;
                 }).collect(Collectors.toList());

@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 
 /**
@@ -23,13 +24,14 @@ import java.util.List;
 
 @RestController
 @Slf4j
+@CrossOrigin
 public class StorageController {
 
     @Autowired
     private StorageService storageService;
 
     @PostMapping(value = AppConstants.FILE_UPLOAD_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response> uploadFile(@RequestParam("image") MultipartFile file) throws Exception {
+    public ResponseEntity<Response> uploadFile(@RequestParam("file") MultipartFile file) throws Exception {
         if (log.isInfoEnabled()) {
             log.info("uploadImage() : Upload File Details - START");
         }
@@ -48,18 +50,18 @@ public class StorageController {
     @GetMapping(value = AppConstants.FILE_DOWNLOAD_ENDPOINT)
     public ResponseEntity<?> downloadFile(@RequestParam(value = "id") long id) {
         if (log.isInfoEnabled()) {
-            log.info("downloadImage() : Download FileDetails - START");
+            log.info("downloadFile() : Download FileDetails - START");
         }
-        FileDetails fileDetails = storageService.downloadImage(id);
+        FileDetails fileDetails = storageService.downloadFile(id);
 
         if (log.isInfoEnabled()) {
-            log.info("downloadImage() : imageData -> {}", ApplicationUtils.getJSONString(fileDetails));
-            log.info("downloadImage() : Download FileDetails - END");
+            log.info("downloadFile() : imageData -> {}", ApplicationUtils.getJSONString(fileDetails));
+            log.info("downloadFile() : Download FileDetails - END");
         }
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .contentType(MediaType.parseMediaType(fileDetails.getFileType()))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "fileName=\"" + fileDetails.getName() + "\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDetails.getName() + "\"")
                 .body(new ByteArrayResource(fileDetails.getFileData()));
 
     }

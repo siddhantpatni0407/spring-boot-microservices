@@ -33,3 +33,6 @@ Spring Boot Microservices
 
 #   11. spring-boot-file-storage-service
    - Spring Boot App to Store and download the file from database.
+   
+#   12. spring-boot-jpa-pagination-service
+   - Spring Boot JPA Pagination Service.
