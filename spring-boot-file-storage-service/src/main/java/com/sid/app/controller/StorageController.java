@@ -109,7 +109,7 @@ public class StorageController {
      * @return ResponseEntity containing the response status and message.
      */
     @DeleteMapping(value = AppConstants.FILE_DELETE_ENDPOINT + "/" + "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    private ResponseEntity<Response> deleteFile(@PathVariable Long id) {
+    ResponseEntity<Response> deleteFile(@PathVariable Long id) {
         if (log.isInfoEnabled()) {
             log.info("deleteEmployee() : Delete File - START");
         }

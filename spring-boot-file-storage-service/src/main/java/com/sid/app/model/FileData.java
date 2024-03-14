@@ -34,4 +34,13 @@ public class FileData {
     @JsonProperty("fileData")
     private String fileData;
 
+    // Constructor
+    public FileData(long id, String name, String type, String fileDownloadURL, String fileSize) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.fileDownloadURL = fileDownloadURL;
+        this.fileSize = fileSize;
+    }
+
 }

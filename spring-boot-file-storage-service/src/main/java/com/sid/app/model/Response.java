@@ -20,4 +20,7 @@ public class Response {
     @JsonProperty("errorMessage")
     private String errorMessage;
 
+    public Response(String fileDeletedSuccessfully) {
+        this.status = fileDeletedSuccessfully;
+    }
 }
