@@ -21,8 +21,8 @@ import java.util.stream.Collectors;
 
 /**
  * @author Siddhant Patni
+ * Service class for handling file storage operations.
  */
-
 @Service
 @Slf4j
 @SuppressWarnings("PMD")
@@ -31,7 +31,14 @@ public class StorageService {
     @Autowired
     private StorageRepository repository;
 
-    public Response uploadImage(MultipartFile file) throws Exception {
+    /**
+     * Uploads a file to the storage service.
+     *
+     * @param file The file to be uploaded.
+     * @return A response indicating the upload status.
+     * @throws Exception If an error occurs during the upload process.
+     */
+    public Response uploadFile(MultipartFile file) throws Exception {
 
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
 
@@ -44,7 +51,7 @@ public class StorageService {
                         .builder()
                         .name(ApplicationUtils.removeSpecialCharacters(file.getOriginalFilename()))
                         .fileType(file.getContentType())
-                        .fileData(ApplicationUtils.compressImage(file.getBytes()))
+                        .fileData(ApplicationUtils.compressFile(file.getBytes()))
                         .fileSize(file.getSize())
                         .build());
 
@@ -57,18 +64,29 @@ public class StorageService {
         return response;
     }
 
+    /**
+     * Downloads a file from the storage service.
+     *
+     * @param id The ID of the file to download.
+     * @return The file details.
+     */
     public FileDetails downloadFile(long id) {
         FileDetails dbFileData = repository.findById(id);
         if (!ObjectUtils.isEmpty(dbFileData)) {
-            dbFileData.setFileData(ApplicationUtils.decompressImage(dbFileData.getFileData()));
+            dbFileData.setFileData(ApplicationUtils.decompressFile(dbFileData.getFileData()));
         } else {
             throw new ResourceNotFoundException(id);
         }
 
-        //byte[] images = ApplicationUtils.decompressImage(dbFileData.get().getFileData());
+        //byte[] files = ApplicationUtils.decompressFile(dbFileData.get().getFileData());
         return dbFileData;
     }
 
+    /**
+     * Retrieves details of all files stored in the service.
+     *
+     * @return A list of file data.
+     */
     public List<FileData> getAllFileDetails() {
         List<FileDetails> repositoryData = repository.findAll();
         if (log.isInfoEnabled()) {
@@ -89,6 +107,12 @@ public class StorageService {
         return fileData;
     }
 
+    /**
+     * Deletes a file from the storage service.
+     *
+     * @param id The ID of the file to delete.
+     * @return A response indicating the deletion status.
+     */
     public Response deleteFile(Long id) {
         Response response = Response.builder().build();
         if (repository.existsById(id)) {

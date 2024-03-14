@@ -20,8 +20,8 @@ import java.util.List;
 
 /**
  * @author Siddhant Patni
+ * Controller class for handling file storage operations.
  */
-
 @RestController
 @Slf4j
 @CrossOrigin
@@ -30,16 +30,23 @@ public class StorageController {
     @Autowired
     private StorageService storageService;
 
+    /**
+     * Endpoint for uploading a file.
+     *
+     * @param file The file to be uploaded.
+     * @return ResponseEntity containing the response status and message.
+     * @throws Exception If an error occurs during file upload.
+     */
     @PostMapping(value = AppConstants.FILE_UPLOAD_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response> uploadFile(@RequestParam("file") MultipartFile file) throws Exception {
         if (log.isInfoEnabled()) {
-            log.info("uploadImage() : Upload File Details - START");
+            log.info("uploadFile() : Upload File Details - START");
         }
-        Response response = storageService.uploadImage(file);
+        Response response = storageService.uploadFile(file);
 
         if (log.isInfoEnabled()) {
-            log.info("uploadImage() : response -> {}", ApplicationUtils.getJSONString(response));
-            log.info("uploadImage() : Upload File Details - END");
+            log.info("uploadFile() : response -> {}", ApplicationUtils.getJSONString(response));
+            log.info("uploadFile() : Upload File Details - END");
         }
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -47,6 +54,12 @@ public class StorageController {
                 .body(response);
     }
 
+    /**
+     * Endpoint for downloading a file.
+     *
+     * @param id The ID of the file to be downloaded.
+     * @return ResponseEntity containing the file data.
+     */
     @GetMapping(value = AppConstants.FILE_DOWNLOAD_ENDPOINT)
     public ResponseEntity<?> downloadFile(@RequestParam(value = "id") long id) {
         if (log.isInfoEnabled()) {
@@ -55,7 +68,7 @@ public class StorageController {
         FileDetails fileDetails = storageService.downloadFile(id);
 
         if (log.isInfoEnabled()) {
-            log.info("downloadFile() : imageData -> {}", ApplicationUtils.getJSONString(fileDetails));
+            log.info("downloadFile() : fileDetails -> {}", ApplicationUtils.getJSONString(fileDetails));
             log.info("downloadFile() : Download FileDetails - END");
         }
         return ResponseEntity
@@ -66,6 +79,11 @@ public class StorageController {
 
     }
 
+    /**
+     * Endpoint for retrieving details of all files.
+     *
+     * @return ResponseEntity containing a list of file details.
+     */
     @GetMapping(value = AppConstants.ALL_FILES_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<FileData>> getAllFileDetails() {
         if (log.isInfoEnabled()) {
@@ -84,6 +102,12 @@ public class StorageController {
 
     }
 
+    /**
+     * Endpoint for deleting a file.
+     *
+     * @param id The ID of the file to be deleted.
+     * @return ResponseEntity containing the response status and message.
+     */
     @DeleteMapping(value = AppConstants.FILE_DELETE_ENDPOINT + "/" + "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<Response> deleteFile(@PathVariable Long id) {
         if (log.isInfoEnabled()) {

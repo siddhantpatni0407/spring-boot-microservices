@@ -3,6 +3,7 @@ package com.sid.app.utils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+
 import java.io.ByteArrayOutputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,6 +12,7 @@ import java.util.zip.Inflater;
 
 /**
  * @author Siddhant Patni
+ * Utility class for common application functionalities.
  */
 @Component
 @Slf4j
@@ -18,11 +20,11 @@ import java.util.zip.Inflater;
 public class ApplicationUtils {
 
     /**
-     * Gets json string.
+     * Converts an object to its JSON string representation.
      *
      * @param <T>    the type parameter
-     * @param object the object
-     * @return the json string
+     * @param object the object to convert
+     * @return the JSON string representation of the object
      */
     public static <T> String getJSONString(T object) {
         if (object != null) {
@@ -38,6 +40,12 @@ public class ApplicationUtils {
         return "";
     }
 
+    /**
+     * Converts a file size in bytes to a human-readable format.
+     *
+     * @param fileSizeBytes the file size in bytes
+     * @return the human-readable file size string
+     */
     public static String getFileSize(long fileSizeBytes) {
 
         // Convert the size to KB or MB
@@ -55,6 +63,12 @@ public class ApplicationUtils {
         return fileSizeStr;
     }
 
+    /**
+     * Removes special characters from a file name.
+     *
+     * @param fileName the file name to sanitize
+     * @return the sanitized file name
+     */
     public static String removeSpecialCharacters(String fileName) {
         // Regular expression to match special characters
         String regex = "[^a-zA-Z0-9\\.\\-_]"; // Allow alphabets, digits, period, hyphen, and underscore
@@ -66,7 +80,13 @@ public class ApplicationUtils {
         return matcher.replaceAll("");
     }
 
-    public static byte[] compressImage(byte[] data) {
+    /**
+     * Compresses a byte array using the Deflater algorithm.
+     *
+     * @param data the byte array to compress
+     * @return the compressed byte array
+     */
+    public static byte[] compressFile(byte[] data) {
         Deflater deflater = new Deflater();
         deflater.setLevel(Deflater.BEST_COMPRESSION);
         deflater.setInput(data);
@@ -85,7 +105,13 @@ public class ApplicationUtils {
         return outputStream.toByteArray();
     }
 
-    public static byte[] decompressImage(byte[] data) {
+    /**
+     * Decompresses a byte array using the Inflater algorithm.
+     *
+     * @param data the byte array to decompress
+     * @return the decompressed byte array
+     */
+    public static byte[] decompressFile(byte[] data) {
         Inflater inflater = new Inflater();
         inflater.setInput(data);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
