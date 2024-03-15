@@ -22,4 +22,6 @@ Spring Boot App to Store and download the file from database.
 
 ````sql
 SELECT * FROM pg_largeobject WHERE loid = [object_id];
+SELECT * FROM pg_largeobject;
+DELETE FROM pg_largeobject;
 ````
