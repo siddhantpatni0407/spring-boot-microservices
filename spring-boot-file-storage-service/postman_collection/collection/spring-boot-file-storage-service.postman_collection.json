@@ -52,7 +52,7 @@
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "image",
+									"key": "file",
 									"type": "file",
 									"src": "siddhant.png"
 								}
@@ -116,7 +116,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/file-storage-service/file/download?fileName=customers.csv",
+							"raw": "http://localhost:8080/api/v1/file-storage-service/file/download?id=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -131,8 +131,8 @@
 							],
 							"query": [
 								{
-									"key": "fileName",
-									"value": "customers.csv"
+									"key": "id",
+									"value": "1"
 								}
 							]
 						}
@@ -235,7 +235,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/file-storage-service/file/delete/2",
+							"raw": "http://localhost:8080/api/v1/file-storage-service/file/delete/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -247,7 +247,90 @@
 								"file-storage-service",
 								"file",
 								"delete",
-								"2"
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Large Object",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/file-storage-service/file/deleteLargeObject?objectId=19085",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"file-storage-service",
+								"file",
+								"deleteLargeObject"
+							],
+							"query": [
+								{
+									"key": "objectId",
+									"value": "19085"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/actuator/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actuator",
+								"health"
 							]
 						}
 					},
