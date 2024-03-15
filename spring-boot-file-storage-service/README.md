@@ -17,3 +17,9 @@ Spring Boot App to Store and download the file from database.
 ### SQL Queries:
 
 - select * from dev.file_details;
+
+- Check Object Existence:  Verify that the large object with the specified object ID exists in the PostgreSQL database. You can do this by querying the database directly.
+
+````sql
+SELECT * FROM pg_largeobject WHERE loid = [object_id];
+````
