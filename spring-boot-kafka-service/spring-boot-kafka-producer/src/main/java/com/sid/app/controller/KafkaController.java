@@ -77,4 +77,36 @@ public class KafkaController {
                 });
     }
 
+    @PostMapping(value = AppConstants.STOP_ZOOKEEPER_SERVER_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ResponseEntity<Response>> stopZookeeperServer() {
+        if (log.isInfoEnabled()) {
+            log.info("stopZookeeperServer() : Stop Zookeeper Server- START");
+        }
+        return kafkaService.stopZookeeper()
+                .flatMap(responseResponseEntity -> {
+                    if (log.isInfoEnabled()) {
+                        log.info("stopZookeeperServer() : Stop Zookeeper Server API. Response -> {}",
+                                ApplicationUtils.getJSONString(responseResponseEntity));
+                        log.info("stopZookeeperServer() : Stop Zookeeper Server - END");
+                    }
+                    return Mono.just(responseResponseEntity);
+                });
+    }
+
+    @PostMapping(value = AppConstants.STOP_KAFKA_SERVER_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ResponseEntity<Response>> stopKafkaServer() {
+        if (log.isInfoEnabled()) {
+            log.info("stopKafkaServer() : Stop Kafka Server - START");
+        }
+        return kafkaService.stopKafka()
+                .flatMap(responseResponseEntity -> {
+                    if (log.isInfoEnabled()) {
+                        log.info("stopKafkaServer() : Stop Kafka Server API. Response -> {}",
+                                ApplicationUtils.getJSONString(responseResponseEntity));
+                        log.info("stopKafkaServer() : Stop Kafka Server - END");
+                    }
+                    return Mono.just(responseResponseEntity);
+                });
+    }
+
 }

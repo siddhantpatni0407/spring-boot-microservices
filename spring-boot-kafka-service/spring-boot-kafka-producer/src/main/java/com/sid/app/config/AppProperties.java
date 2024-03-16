@@ -26,4 +26,7 @@ public class AppProperties {
     @Value("${spring.json.trusted.packages}")
     private String jsonTrustedPackage;
 
+    @Value("${spring.kafka.producer.installation-directory}")
+    private String kafkaInstallationDirectory;
+
 }

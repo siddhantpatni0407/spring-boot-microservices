@@ -10,8 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Siddhant Patni
@@ -33,7 +35,9 @@ public class KafkaService {
                 adminClient.createTopics(Collections.singletonList(newTopic)).all().get();
                 return ResponseEntity.ok(new Response("Topic -[" + topicName + "]  created successfully", null));
             } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
+                if (log.isErrorEnabled()) {
+                    log.error("Exception occurred : {}", e.getMessage());
+                }
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                         .body(new Response("Failed to create topic", e.getMessage()));
             }
@@ -50,7 +54,9 @@ public class KafkaService {
                 deleteTopicsResult.all().get();
                 return ResponseEntity.ok(new Response("Topic -[" + topicName + "] deleted successfully", null));
             } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
+                if (log.isErrorEnabled()) {
+                    log.error("Exception occurred : {}", e.getMessage());
+                }
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                         .body(new Response("Failed to delete topic", e.getMessage()));
             }
@@ -67,12 +73,70 @@ public class KafkaService {
                 Set<String> topics = topicsResult.names().get();
                 return ResponseEntity.ok(new ArrayList<>(topics));
             } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
+                if (log.isErrorEnabled()) {
+                    log.error("Exception occurred : {}", e.getMessage());
+                }
                 // Return an empty collection in case of error
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                         .body(new ArrayList<>());
             }
         });
+    }
+
+    public Mono<ResponseEntity<Response>> stopZookeeper() {
+        Response response = Response.builder().build();
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder();
+            processBuilder.command("cmd.exe", "/c", appProperties.getKafkaInstallationDirectory() + "\\zookeeper-server-stop.bat");
+            //processBuilder.command("sh", "-c", appProperties.getKafkaInstallationDirectory().concat("/zookeeper-server-stop.sh"));
+            if (log.isInfoEnabled()) {
+                log.info("stopZookeeper() : path : {}", appProperties.getKafkaInstallationDirectory().concat("\\zookeeper-server-stop.bat"));
+            }
+            Process process = processBuilder.start();
+            // Wait for the process to terminate
+            process.waitFor(30, TimeUnit.SECONDS);
+            // Check if the process has exited normally
+            if (process.exitValue() == 0) {
+                response.setStatus("Zookeeper server stopped successfully.");
+            } else {
+                response.setErrorMessage("Failed to stop Zookeeper server.");
+            }
+            return Mono.just(ResponseEntity.ok(response));
+        } catch (IOException | InterruptedException e) {
+            if (log.isErrorEnabled()) {
+                log.error("stopZookeeper() : Exception occurred : {}", e.getMessage());
+            }
+            return Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new Response("Failed to stop the zookeeper server with exception : ", e.getMessage())));
+        }
+    }
+
+    public Mono<ResponseEntity<Response>> stopKafka() {
+        Response response = Response.builder().build();
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder();
+            processBuilder.command("cmd.exe", "/c", appProperties.getKafkaInstallationDirectory() + "\\kafka-server-stop.bat");
+            //processBuilder.command("sh", "-c", appProperties.getKafkaInstallationDirectory().concat("/kafka-server-stop.sh"));
+            if (log.isInfoEnabled()) {
+                log.info("stopKafka() : path : {}", appProperties.getKafkaInstallationDirectory().concat("\\kafka-server-stop.bat"));
+            }
+            Process process = processBuilder.start();
+            // Wait for the process to terminate
+            process.waitFor(30, TimeUnit.SECONDS);
+            // Check if the process has exited normally
+            if (process.exitValue() == 0) {
+                response.setStatus("Kafka server stopped successfully.");
+            } else {
+                response.setErrorMessage("Failed to stop Kafka server.");
+            }
+            return Mono.just(ResponseEntity.ok(response));
+        } catch (IOException | InterruptedException e) {
+            if (log.isErrorEnabled()) {
+                log.error("stopKafka() : Exception occurred : {}", e.getMessage());
+            }
+            return Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new Response("Failed to stop the kafka server with exception : ", e.getMessage())));
+        }
     }
 
 }

@@ -17,6 +17,7 @@ spring:
         value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
         acks: all
         topic: kafka-demo
+        installation-directory: "C:\\Softwares\\Kafka\\kafka\\bin\\windows"
     json:
         trusted:
             packages: "com.sid.app.model"
