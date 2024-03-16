@@ -16,14 +16,15 @@ Spring Boot application for interacting with Apache Kafka.
 6. [Kafka - Flow Diagram - 2](#kafka---flow-diagram---2)
 7. [Kafka - Flow Diagram - 3](#kafka---flow-diagram---3)
 8. [Kafka - Flow Diagram - 4](#kafka---flow-diagram---4)
-9. [Apache Kafka Commands](#apache-kafka-commands)
-10. [API Details](#api-details)
+9. [Kafka - Block Diagram](#kafka---block-diagram)
+10. [Apache Kafka Commands](#apache-kafka-commands)
+11. [API Details](#api-details)
     - [1. Create Topic](#1-create-topic)
     - [2. Get All Topics](#2-get-all-topics)
     - [3. Delete Topic](#3-delete-topic)
     - [4. Publish Message](#4-publish-message)
     - [5. Send Events](#5-send-events)
-11. [API Summary](#api-summary)
+12. [API Summary](#api-summary)
 
 ## Description
 
@@ -190,6 +191,25 @@ flowchart TD
   Zookeeper -->|Manages| BrokerB
   Zookeeper -->|Manages| BrokerC
 ```
+
+## Kafka - Block Diagram
+
+```mermaid
+graph TD
+    A[Apache Kafka] --> B[Producer API]
+    A --> C[Consumer API]
+    A --> D[Streams API]
+    A --> E[Connector API]
+    B --> F[Topic]
+    C --> F
+    D --> F
+    E --> H[External Systems]
+    F --> G[Broker]
+    G --> I[Partition]
+    G --> J[Replica]
+    I --> J
+```
+
 # Apache Kafka Commands
 
 This README provides a guide on how to use Apache Kafka with various commands.
