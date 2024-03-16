@@ -1,6 +1,6 @@
 spring:
     application:
-        name: spring-boot-kafka-producer
+        name: spring-boot-common-kafka-utility-service
     main:
         banner-mode: #off
     banner:
@@ -11,18 +11,17 @@ spring:
             password: admin
             roles: ACTUATOR_ADMIN
     kafka:
-       producer:
         bootstrap-servers: localhost:9092
-        key-serializer: org.apache.kafka.common.serialization.StringSerializer
-        value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-        acks: all
         topic: kafka-demo
+        installation-directory: "C:\\Softwares\\Kafka\\kafka\\bin\\windows"
+        zookeeper-config-path: "C:\\Softwares\\Kafka\\kafka\\config\\zookeeper.properties"
+        kafka-config-path: "C:\\Softwares\\Kafka\\kafka\\config\\server.properties"
     json:
         trusted:
             packages: "com.sid.app.model"
 
 server:
-    port: 8081
+    port: 8083
 
 audit:
     connector:

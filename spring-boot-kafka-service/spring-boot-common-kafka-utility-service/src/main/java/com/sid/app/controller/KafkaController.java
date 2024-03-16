@@ -8,11 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 import java.util.Collection;
@@ -72,6 +68,22 @@ public class KafkaController {
                         log.info("deleteTopic() : Delete Topic API. Request param => topicName -> {} and Response -> {}",
                                 topicName, ApplicationUtils.getJSONString(responseResponseEntity));
                         log.info("deleteTopic() : Delete Topic - END");
+                    }
+                    return Mono.just(responseResponseEntity);
+                });
+    }
+
+    @PostMapping(value = AppConstants.START_KAFKA_SERVERS_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ResponseEntity<Response>> startServers() {
+        if (log.isInfoEnabled()) {
+            log.info("startServers() : Start Zookeeper and Kafka Server - START");
+        }
+        return kafkaService.startServers()
+                .flatMap(responseResponseEntity -> {
+                    if (log.isInfoEnabled()) {
+                        log.info("startServers() : Start Zookeeper and Kafka Server API. Response -> {}",
+                                ApplicationUtils.getJSONString(responseResponseEntity));
+                        log.info("startServers() : Start Zookeeper and Kafka Server - END");
                     }
                     return Mono.just(responseResponseEntity);
                 });

@@ -11,19 +11,22 @@ import org.springframework.stereotype.Component;
 @Data
 public class AppProperties {
 
-    @Value("${spring.kafka.producer.topic}")
+    @Value("${spring.kafka.topic}")
     private String kafkaTopic;
 
-    @Value("${spring.kafka.producer.bootstrap-servers}")
+    @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServers;
-
-    @Value("${spring.kafka.producer.key-serializer}")
-    private String keySerializer;
-
-    @Value("${spring.kafka.producer.value-serializer}")
-    private String valueSerializer;
 
     @Value("${spring.json.trusted.packages}")
     private String jsonTrustedPackage;
+
+    @Value("${spring.kafka.installation-directory}")
+    private String kafkaInstallationDirectory;
+
+    @Value("${spring.kafka.zookeeper-config-path}")
+    private String zookeeperConfigPath;
+
+    @Value("${spring.kafka.kafka-config-path}")
+    private String kafkaConfigPath;
 
 }

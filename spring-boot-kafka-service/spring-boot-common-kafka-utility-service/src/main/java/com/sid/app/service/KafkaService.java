@@ -83,6 +83,37 @@ public class KafkaService {
         });
     }
 
+    public Mono<ResponseEntity<Response>> startServers() {
+        Response response = Response.builder().build();
+        try {
+            ProcessBuilder zookeeperProcessBuilder = new ProcessBuilder();
+            zookeeperProcessBuilder.command("cmd.exe", "/c", "start", "cmd.exe", "/k", "call",
+                    appProperties.getKafkaInstallationDirectory() + "\\zookeeper-server-start.bat",
+                    appProperties.getZookeeperConfigPath());
+            Process zookeeperProcess = zookeeperProcessBuilder.start();
+
+            ProcessBuilder kafkaProcessBuilder = new ProcessBuilder();
+            kafkaProcessBuilder.command("cmd.exe", "/c", "start", "cmd.exe", "/k", "call",
+                    appProperties.getKafkaInstallationDirectory() + "\\kafka-server-start.bat",
+                    appProperties.getKafkaConfigPath());
+            Process kafkaProcess = kafkaProcessBuilder.start();
+
+            // Check if both processes started successfully
+            if (zookeeperProcess.isAlive() && kafkaProcess.isAlive()) {
+                response.setStatus("Zookeeper and Kafka servers started successfully.");
+            } else {
+                response.setErrorMessage("Failed to start Zookeeper or Kafka server.");
+            }
+            return Mono.just(ResponseEntity.ok(response));
+        } catch (IOException e) {
+            if (log.isErrorEnabled()) {
+                log.error("startServers() : Exception occurred : {}", e.getMessage());
+            }
+            return Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new Response("Failed to start the zookeeper and kafka server with exception : ", e.getMessage())));
+        }
+    }
+
     public Mono<ResponseEntity<Response>> stopZookeeper() {
         Response response = Response.builder().build();
         try {
