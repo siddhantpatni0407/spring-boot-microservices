@@ -1,10 +1,48 @@
 # spring-boot-kafka-service
 
-Spring Boot App with Kafka Service.
+Spring Boot application for interacting with Apache Kafka.
 
 - This contains 2 modules
     1. spring-boot-kafka-producer
     2. spring-boot-kafka-consumer
+
+# Table of Contents
+
+1. [Description](#description)
+2. [Features](#features)
+3. [Usage](#usage)
+4. [Kafka - Sequence Diagram](#kafka---sequence-diagram)
+5. [Kafka - Flow Diagram - 1](#kafka---flow-diagram---1)
+6. [Kafka - Flow Diagram - 2](#kafka---flow-diagram---2)
+7. [Kafka - Flow Diagram - 3](#kafka---flow-diagram---3)
+8. [Kafka - Flow Diagram - 4](#kafka---flow-diagram---4)
+9. [Apache Kafka Commands](#apache-kafka-commands)
+10. [API Details](#api-details)
+    - [1. Create Topic](#1-create-topic)
+    - [2. Get All Topics](#2-get-all-topics)
+    - [3. Delete Topic](#3-delete-topic)
+    - [4. Publish Message](#4-publish-message)
+    - [5. Send Events](#5-send-events)
+11. [API Summary](#api-summary)
+
+## Description
+
+This service enables communication with Apache Kafka through RESTful APIs. It consists of two modules:
+- `spring-boot-kafka-producer`: Allows publishing messages to Kafka topics.
+- `spring-boot-kafka-consumer`: Facilitates consuming messages from Kafka topics.
+
+## Features
+
+- Sequence and flow diagrams illustrating Kafka message flow.
+- Apache Kafka command usage for various operations.
+- RESTful APIs for managing Kafka topics and messages.
+- Detailed descriptions and examples for each API endpoint.
+
+## Usage
+
+Users can interact with the service via its RESTful API endpoints to manage Kafka topics and messages effectively.
+
+For detailed usage instructions and examples, refer to the API documentation in the respective service modules.
 
 ## Kafka - Sequence Diagram
 
@@ -211,3 +249,122 @@ Before running Kafka commands, make sure you have Kafka installed on your system
     ```bash
     ./zookeeper-server-stop.bat
     ```
+
+## API Details
+
+### 1. Create Topic
+
+- **URL** - http://localhost:8081/api/v1/kafka-service/kafka/topic?topicName=sid-test&partition=3
+- **HTTP Method** - POST
+- **Description:** Creates a new Kafka topic with the specified name and partition.
+- **Request Parameters:**
+    - `topicName`: Name of the Kafka topic to create.
+    - `partition`: Number of partitions for the new topic.
+
+- **Response** 
+
+````
+{
+  "status": "Topic created successfully",
+  "errorMessage": null
+}
+````
+
+### 2. Get All Topics
+
+- **URL** - http://localhost:8081/api/v1/kafka-service/kafka/topic
+- **HTTP Method** - GET
+- **Description:**  Retrieves a list of all existing Kafka topics.
+
+- **Response** 
+
+````
+[
+  "topic1",
+  "topic2",
+  "topic3"
+]
+````
+
+### 3. Delete Topic
+
+- **URL** - http://localhost:8081/api/v1/kafka-service/kafka/topic
+- **HTTP Method** - DELETE
+- **Description:**  Deletes the specified Kafka topic.
+
+- **Response** 
+
+````
+{
+  "status": "Topic deleted successfully",
+  "errorMessage": null
+}
+````
+
+### 4. Publish Message
+
+- **URL** - http://localhost:8081/api/v1/kafka-service/publish
+- **HTTP Method** - GET
+- **Description:**  Publishes a message to a Kafka topic.
+
+- **Response**
+
+````
+{
+  "status": "Message published successfully",
+  "errorMessage": null
+}
+````
+
+### 5. Send Events
+
+- **URL** - http://localhost:8081/api/v1/kafka-service/publish
+- **HTTP Method** - POST
+- **Description:**  Publishes events to a Kafka topic.
+- **Request Body:** Customer object containing event details.
+
+- **Request**
+
+````
+{
+  "id": 123,
+  "name": "Siddhant Patni",
+  "email": "siddhant4patni@gmail.com"
+}
+````
+
+- **Response**
+
+````
+{
+  "status": "Events published successfully",
+  "errorMessage": null
+}
+````
+
+## API Summary
+
+### 1. Create Topic
+- **URL**: /api/v1/kafka-service/kafka/topic
+- **Method**: POST
+- **Description**: Creates a new Kafka topic with the specified name and partition count.
+
+### 2. Get All Topics
+- **URL**: /api/v1/kafka-service/kafka/topic
+- **Method**: GET
+- **Description**: Retrieves a list of all existing Kafka topics.
+
+### 3. Delete Topic
+- **URL**: /api/v1/kafka-service/kafka/topic
+- **Method**: DELETE
+- **Description**: Deletes the specified Kafka topic.
+
+### 4. Publish Message
+- **URL**: /api/v1/kafka-service/publish
+- **Method**: GET
+- **Description**: Publishes a message to a Kafka topic.
+
+### 5. Send Events
+- **URL**: /api/v1/kafka-service/publish
+- **Method**: POST
+- **Description**: Publishes events to a Kafka topic.

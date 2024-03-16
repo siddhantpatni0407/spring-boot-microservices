@@ -36,3 +36,6 @@ Spring Boot Microservices
    
 #   12. spring-boot-jpa-pagination-service
    - Spring Boot JPA Pagination Service.
+   
+#   13. spring-boot-kafka-service
+   - Spring Boot application for interacting with Apache Kafka.
