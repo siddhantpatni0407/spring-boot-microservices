@@ -52,6 +52,11 @@
 			<artifactId>spring-kafka-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-pmd-plugin</artifactId>
+			<version>3.21.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -67,6 +72,29 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.21.2</version>
+				<configuration>
+					<linkXref>false</linkXref>
+					<sourceEncoding>UTF-8</sourceEncoding>
+					<!-- Customize rulesets as needed -->
+					<rulesets>
+						<ruleset>rulesets/java/basic.xml</ruleset>
+						<ruleset>rulesets/java/braces.xml</ruleset>
+						<!-- Add more rulesets if required -->
+					</rulesets>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>pmd</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
