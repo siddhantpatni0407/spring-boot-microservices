@@ -9,8 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+import reactor.util.retry.Retry;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -25,13 +27,18 @@ public class KafkaService {
     @Autowired
     private AppProperties appProperties;
 
-    public Mono<ResponseEntity<Response>> createTopic(String topicName, int partition) {
+    public Mono<ResponseEntity<Response>> createTopic(String topicName, Integer partition) {
         return Mono.fromCallable(() -> {
             Properties properties = new Properties();
             properties.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, appProperties.getBootstrapServers());
 
             try (AdminClient adminClient = AdminClient.create(properties)) {
-                NewTopic newTopic = new NewTopic(topicName, partition, (short) 1);
+                NewTopic newTopic;
+                if (partition == null || partition.equals(0)) {
+                    newTopic = new NewTopic(topicName, 1, (short) 1);
+                } else {
+                    newTopic = new NewTopic(topicName, partition, (short) 1);
+                }
                 adminClient.createTopics(Collections.singletonList(newTopic)).all().get();
                 return ResponseEntity.ok(new Response("Topic -[" + topicName + "]  created successfully", null));
             } catch (InterruptedException | ExecutionException e) {
@@ -52,7 +59,7 @@ public class KafkaService {
             try (AdminClient adminClient = AdminClient.create(properties)) {
                 DeleteTopicsResult deleteTopicsResult = adminClient.deleteTopics(Collections.singletonList(topicName));
                 deleteTopicsResult.all().get();
-                return ResponseEntity.ok(new Response("Topic -[" + topicName + "] deleted successfully", null));
+                return ResponseEntity.ok(new Response("Topic " + topicName + " deleted successfully", null));
             } catch (InterruptedException | ExecutionException e) {
                 if (log.isErrorEnabled()) {
                     log.error("Exception occurred : {}", e.getMessage());
@@ -60,7 +67,14 @@ public class KafkaService {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                         .body(new Response("Failed to delete topic", e.getMessage()));
             }
-        });
+        }).retryWhen(Retry.fixedDelay(3, Duration.ofSeconds(5))
+                .filter(throwable -> throwable instanceof IOException)
+                .onRetryExhaustedThrow((retryBackoffSpec, retrySignal) -> {
+                    if (log.isErrorEnabled()) {
+                        log.error("Retry attempts exhausted: {}", retrySignal.totalRetriesInARow());
+                    }
+                    return new RuntimeException("Retry attempts exhausted: " + retrySignal.totalRetriesInARow());
+                }));
     }
 
     public Mono<ResponseEntity<Collection<String>>> getAllTopics() {

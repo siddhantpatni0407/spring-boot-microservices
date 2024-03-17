@@ -25,7 +25,7 @@ public class KafkaController {
 
     @PostMapping(value = AppConstants.KAFKA_TOPIC_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<Response>> createTopic(@RequestParam(value = "topicName") String topicName,
-                                                      @RequestParam(value = "partition") int partition) {
+                                                      @RequestParam(value = "partition", required = false) Integer partition) {
         if (log.isInfoEnabled()) {
             log.info("createTopic() : Create Topic - START");
         }
