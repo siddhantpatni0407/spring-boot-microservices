@@ -137,7 +137,8 @@ public class KafkaService {
         Response response = Response.builder().build();
         try {
             ProcessBuilder processBuilder = new ProcessBuilder();
-            processBuilder.command("cmd.exe", "/c", appProperties.getKafkaInstallationDirectory() + "\\zookeeper-server-stop.bat");
+            processBuilder.command("cmd.exe", "/c", "start", "cmd.exe", "/k", "call",
+                    appProperties.getKafkaInstallationDirectory() + "\\zookeeper-server-stop.bat");
             //processBuilder.command("sh", "-c", appProperties.getKafkaInstallationDirectory().concat("/zookeeper-server-stop.sh"));
             if (log.isInfoEnabled()) {
                 log.info("stopZookeeper() : path : {}", appProperties.getKafkaInstallationDirectory().concat("\\zookeeper-server-stop.bat"));
@@ -165,7 +166,8 @@ public class KafkaService {
         Response response = Response.builder().build();
         try {
             ProcessBuilder processBuilder = new ProcessBuilder();
-            processBuilder.command("cmd.exe", "/c", appProperties.getKafkaInstallationDirectory() + "\\kafka-server-stop.bat");
+            processBuilder.command("cmd.exe", "/c", "start", "cmd.exe", "/k", "call",
+                    appProperties.getKafkaInstallationDirectory() + "\\kafka-server-stop.bat");
             //processBuilder.command("sh", "-c", appProperties.getKafkaInstallationDirectory().concat("/kafka-server-stop.sh"));
             if (log.isInfoEnabled()) {
                 log.info("stopKafka() : path : {}", appProperties.getKafkaInstallationDirectory().concat("\\kafka-server-stop.bat"));
