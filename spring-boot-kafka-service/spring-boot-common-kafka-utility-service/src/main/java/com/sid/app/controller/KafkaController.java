@@ -89,33 +89,17 @@ public class KafkaController {
                 });
     }
 
-    @PostMapping(value = AppConstants.STOP_ZOOKEEPER_SERVER_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<ResponseEntity<Response>> stopZookeeperServer() {
+    @PostMapping(value = AppConstants.STOP_KAFKA_SERVERS_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ResponseEntity<Response>> stopKafkaServers() {
         if (log.isInfoEnabled()) {
-            log.info("stopZookeeperServer() : Stop Zookeeper Server- START");
+            log.info("stopKafkaServers() : Stop Zookeeper and Kafka Server - START");
         }
-        return kafkaService.stopZookeeper()
+        return kafkaService.stopKafkaServers()
                 .flatMap(responseResponseEntity -> {
                     if (log.isInfoEnabled()) {
-                        log.info("stopZookeeperServer() : Stop Zookeeper Server API. Response -> {}",
+                        log.info("stopKafkaServers() : Stop Zookeeper and Kafka Server API. Response -> {}",
                                 ApplicationUtils.getJSONString(responseResponseEntity));
-                        log.info("stopZookeeperServer() : Stop Zookeeper Server - END");
-                    }
-                    return Mono.just(responseResponseEntity);
-                });
-    }
-
-    @PostMapping(value = AppConstants.STOP_KAFKA_SERVER_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<ResponseEntity<Response>> stopKafkaServer() {
-        if (log.isInfoEnabled()) {
-            log.info("stopKafkaServer() : Stop Kafka Server - START");
-        }
-        return kafkaService.stopKafka()
-                .flatMap(responseResponseEntity -> {
-                    if (log.isInfoEnabled()) {
-                        log.info("stopKafkaServer() : Stop Kafka Server API. Response -> {}",
-                                ApplicationUtils.getJSONString(responseResponseEntity));
-                        log.info("stopKafkaServer() : Stop Kafka Server - END");
+                        log.info("stopKafkaServers() : Stop Zookeeper and Kafka Server - END");
                     }
                     return Mono.just(responseResponseEntity);
                 });
