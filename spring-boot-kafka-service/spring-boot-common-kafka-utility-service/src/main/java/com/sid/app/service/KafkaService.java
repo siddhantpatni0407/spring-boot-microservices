@@ -11,7 +11,12 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import reactor.util.retry.Retry;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
@@ -181,6 +186,43 @@ public class KafkaService {
             }
             return Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new Response("Failed to stop the kafka server with exception : ", e.getMessage())));
+        }
+    }
+
+    public Mono<ResponseEntity<Response>> deleteKafkaLogs() {
+        return Mono.fromCallable(() -> {
+            try {
+                // Specify the paths to Kafka and Zookeeper logs
+                String kafkaLogsPath = appProperties.getKafkaLogsPath();
+                String zookeeperLogsPath = appProperties.getZookeeperLogsPath();
+
+                // Delete Kafka logs
+                deleteDirectory(new File(kafkaLogsPath));
+                // Delete Zookeeper logs
+                deleteDirectory(new File(zookeeperLogsPath));
+                return ResponseEntity.ok(new Response("Kafka and Zookeeper logs deleted successfully", null));
+            } catch (Exception e) {
+                // Handle any exceptions that occur during the log deletion
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body(new Response("Failed to delete Kafka and Zookeeper logs", e.getMessage()));
+            }
+        });
+    }
+
+    // Helper method to delete directory recursively
+    private void deleteDirectory(File directory) {
+        if (directory.exists()) {
+            File[] files = directory.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (file.isDirectory()) {
+                        deleteDirectory(file);
+                    } else {
+                        file.delete();
+                    }
+                }
+            }
+            directory.delete();
         }
     }
 

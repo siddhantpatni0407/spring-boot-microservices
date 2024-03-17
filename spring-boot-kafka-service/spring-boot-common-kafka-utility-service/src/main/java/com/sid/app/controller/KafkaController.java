@@ -121,4 +121,20 @@ public class KafkaController {
                 });
     }
 
+    @DeleteMapping(value = AppConstants.DELETE_KAFKA_LOGS_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ResponseEntity<Response>> deleteKafkaLogs() {
+        if (log.isInfoEnabled()) {
+            log.info("deleteKafkaLogs() : Delete Kafka Logs - START");
+        }
+        return kafkaService.deleteKafkaLogs()
+                .flatMap(responseResponseEntity -> {
+                    if (log.isInfoEnabled()) {
+                        log.info("deleteKafkaLogs() : Delete Kafka Logs API. Response -> {}",
+                                ApplicationUtils.getJSONString(responseResponseEntity));
+                        log.info("deleteKafkaLogs() : Delete Kafka Logs - END");
+                    }
+                    return Mono.just(responseResponseEntity);
+                });
+    }
+
 }

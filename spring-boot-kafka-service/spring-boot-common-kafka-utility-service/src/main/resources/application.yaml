@@ -16,6 +16,9 @@ spring:
         installation-directory: "C:\\Softwares\\Kafka\\kafka\\bin\\windows"
         zookeeper-config-path: "C:\\Softwares\\Kafka\\kafka\\config\\zookeeper.properties"
         kafka-config-path: "C:\\Softwares\\Kafka\\kafka\\config\\server.properties"
+        logs:
+            kafka-logs-path: "C:\\Logs\\Kafka\\kafka-data"
+            zookeeper-logs-path: "C:\\Logs\\Kafka\\zookeeper-data"
     json:
         trusted:
             packages: "com.sid.app.model"

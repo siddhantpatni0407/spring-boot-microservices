@@ -29,4 +29,10 @@ public class AppProperties {
     @Value("${spring.kafka.kafka-config-path}")
     private String kafkaConfigPath;
 
+    @Value("${spring.kafka.logs.kafka-logs-path}")
+    private String kafkaLogsPath;
+
+    @Value("${spring.kafka.logs.zookeeper-logs-path}")
+    private String zookeeperLogsPath;
+
 }
