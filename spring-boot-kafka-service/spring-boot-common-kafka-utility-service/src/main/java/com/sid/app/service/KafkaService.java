@@ -27,6 +27,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 @Slf4j
+@SuppressWarnings("PMD")
 public class KafkaService {
 
     @Autowired
