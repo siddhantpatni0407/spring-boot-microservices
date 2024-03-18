@@ -323,7 +323,7 @@ Before running Kafka commands, make sure you have Kafka installed on your system
 
 ### 4. Publish Message
 
-- **URL** - http://localhost:8081/api/v1/kafka-service/publish
+- **URL** - http://localhost:8082/api/v1/kafka-service/publish
 - **HTTP Method** - GET
 - **Description:**  Publishes a message to a Kafka topic.
 
@@ -338,7 +338,7 @@ Before running Kafka commands, make sure you have Kafka installed on your system
 
 ### 5. Send Events
 
-- **URL** - http://localhost:8081/api/v1/kafka-service/publish
+- **URL** - http://localhost:8082/api/v1/kafka-service/publish
 - **HTTP Method** - POST
 - **Description:**  Publishes events to a Kafka topic.
 - **Request Body:** Customer object containing event details.

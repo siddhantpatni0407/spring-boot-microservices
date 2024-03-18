@@ -18,6 +18,7 @@ import reactor.core.publisher.Mono;
  */
 @RestController
 @Slf4j
+@CrossOrigin
 public class EventController {
 
     @Autowired
@@ -25,16 +26,16 @@ public class EventController {
 
     @GetMapping(value = AppConstants.KAFKA_PUBLISH_MESSAGE_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<Response>> publishMessage(@RequestParam(value = "message") String message) {
+        if (log.isInfoEnabled()) {
+            log.info("publishMessage() : Publish Message - START");
+        }
         try {
-            if (log.isInfoEnabled()) {
-                log.info("sendEvents() : Publish Message - START");
-            }
             return publisher.sendMessageToTopic(message)
                     .flatMap(response -> {
                         if (log.isInfoEnabled()) {
-                            log.info("publishMessage() : Publish Event API. Request param-> {} and response -> {}",
+                            log.info("publishMessage() : Publish Message API. Request param = message -> {} and response -> {}",
                                     message, ApplicationUtils.getJSONString(response));
-                            log.info("sendEvents() : Publish Message - END");
+                            log.info("publishMessage() : Publish Message - END");
                         }
                         return Mono.just(ResponseEntity.ok(response));
                     });
@@ -45,19 +46,24 @@ public class EventController {
     }
 
     @PostMapping(value = AppConstants.KAFKA_PUBLISH_MESSAGE_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<Response> sendEvents(@RequestBody Customer request) {
+    public Mono<ResponseEntity<Response>> sendEvents(@RequestBody Customer request) {
         if (log.isInfoEnabled()) {
             log.info("sendEvents() : Publish Event - START");
         }
-        return publisher.sendEventsToTopic(request)
-                .flatMap(response -> {
-                    if (log.isInfoEnabled()) {
-                        log.info("sendEvents() : Publish Event API. request -> {} and response -> {}",
-                                ApplicationUtils.getJSONString(request), ApplicationUtils.getJSONString(response));
-                        log.info("sendEvents() : Publish Event - END");
-                    }
-                    return Mono.just(response);
-                });
+        try {
+            return publisher.sendEventsToTopic(request)
+                    .flatMap(response -> {
+                        if (log.isInfoEnabled()) {
+                            log.info("sendEvents() : Publish Event API. request -> {} and response -> {}",
+                                    ApplicationUtils.getJSONString(request), ApplicationUtils.getJSONString(response));
+                            log.info("sendEvents() : Publish Event - END");
+                        }
+                        return Mono.just(ResponseEntity.ok(response));
+                    });
+        } catch (Exception ex) {
+            return Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .build());
+        }
     }
 
 }
