@@ -33,7 +33,7 @@ spring:
             packages: "com.sid.app.model"
 
 server:
-    port: 8082
+    port: 8083
 
 audit:
     connector:

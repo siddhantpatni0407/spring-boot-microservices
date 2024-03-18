@@ -49,12 +49,12 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8083/api/v1/kafka-service/kafka/start-server",
+							"raw": "http://localhost:8081/api/v1/kafka-service/kafka/start-server",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8083",
+							"port": "8081",
 							"path": [
 								"api",
 								"v1",
@@ -106,12 +106,12 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8083/api/v1/kafka-service/kafka/stop-server",
+							"raw": "http://localhost:8081/api/v1/kafka-service/kafka/stop-server",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8083",
+							"port": "8081",
 							"path": [
 								"api",
 								"v1",
@@ -163,12 +163,12 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8083/api/v1/kafka-service/kafka/topic?topicName=kafka-demo",
+							"raw": "http://localhost:8081/api/v1/kafka-service/kafka/topic?topicName=kafka-demo",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8083",
+							"port": "8081",
 							"path": [
 								"api",
 								"v1",
@@ -233,12 +233,12 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8083/api/v1/kafka-service/kafka/topic",
+							"raw": "http://localhost:8081/api/v1/kafka-service/kafka/topic",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8083",
+							"port": "8081",
 							"path": [
 								"api",
 								"v1",
@@ -290,12 +290,12 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8083/api/v1/kafka-service/kafka/topic?topicName=kafka-demo",
+							"raw": "http://localhost:8081/api/v1/kafka-service/kafka/topic?topicName=kafka-demo",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8083",
+							"port": "8081",
 							"path": [
 								"api",
 								"v1",
@@ -353,12 +353,12 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8083/api/v1/kafka-service/kafka/logs",
+							"raw": "http://localhost:8081/api/v1/kafka-service/kafka/logs",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8083",
+							"port": "8081",
 							"path": [
 								"api",
 								"v1",
@@ -415,12 +415,12 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8081/api/v1/kafka-service/publish?message=Siddhant Patni",
+							"raw": "http://localhost:8082/api/v1/kafka-service/publish?message=Siddhant Patni",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8082",
 							"path": [
 								"api",
 								"v1",
@@ -486,12 +486,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/api/v1/kafka-service/publish",
+							"raw": "http://localhost:8082/api/v1/kafka-service/publish",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8082",
 							"path": [
 								"api",
 								"v1",
