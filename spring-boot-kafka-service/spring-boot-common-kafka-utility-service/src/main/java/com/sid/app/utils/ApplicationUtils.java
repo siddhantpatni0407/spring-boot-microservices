@@ -29,4 +29,16 @@ public class ApplicationUtils {
         return "";
     }
 
+    public static <T> T readValue(String content, Class<T> valueType) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.readValue(content, valueType);
+        } catch (Exception e) {
+            if (log.isErrorEnabled()) {
+                log.error("Error occurred [{}] while reading from string [{}]", e.getMessage(), content);
+            }
+        }
+        return null;
+    }
+
 }

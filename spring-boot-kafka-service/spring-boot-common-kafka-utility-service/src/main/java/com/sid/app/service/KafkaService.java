@@ -2,8 +2,11 @@ package com.sid.app.service;
 
 import com.sid.app.config.AppProperties;
 import com.sid.app.model.Response;
+import com.sid.app.model.TopicDetails;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.*;
+import org.apache.kafka.common.KafkaFuture;
+import org.apache.kafka.common.errors.UnknownTopicOrPartitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -197,6 +200,31 @@ public class KafkaService {
                 }
             }
             directory.delete();
+        }
+    }
+
+    public Mono<TopicDescription> getTopicDescription(String topicName) {
+        Properties properties = new Properties();
+        properties.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, appProperties.getBootstrapServers());
+
+        try (AdminClient adminClient = AdminClient.create(properties)) {
+            DescribeTopicsResult describeTopicsResult = adminClient.describeTopics(
+                    Collections.singletonList(topicName), new DescribeTopicsOptions().timeoutMs(5000));
+            KafkaFuture<TopicDescription> topicDescriptionFuture = describeTopicsResult.values().get(topicName);
+            return Mono.create(sink -> {
+                try {
+                    TopicDescription topicDescription = topicDescriptionFuture.get();
+                    sink.success(topicDescription);
+                } catch (InterruptedException | ExecutionException e) {
+                    if (e.getCause() instanceof UnknownTopicOrPartitionException) {
+                        sink.error(new UnknownTopicOrPartitionException("Topic '" + topicName + "' does not exist"));
+                    } else {
+                        sink.error(e);
+                    }
+                }
+            });
+        } catch (Exception e) {
+            return Mono.error(e);
         }
     }
 

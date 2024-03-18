@@ -2,16 +2,23 @@ package com.sid.app.controller;
 
 import com.sid.app.constant.AppConstants;
 import com.sid.app.model.Response;
+import com.sid.app.model.TopicDetails;
 import com.sid.app.service.KafkaService;
 import com.sid.app.utils.ApplicationUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.common.KafkaException;
+import org.apache.kafka.common.TopicPartitionInfo;
+import org.apache.kafka.common.errors.UnknownTopicOrPartitionException;
+import org.apache.kafka.common.protocol.types.Field;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 import java.util.Collection;
+import java.util.concurrent.ExecutionException;
 
 /**
  * @author Siddhant Patni
@@ -56,6 +63,31 @@ public class KafkaController {
                     return Mono.just(allTopics);
                 });
 
+    }
+
+    @GetMapping(value = AppConstants.KAFKA_TOPIC_DETAILS_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ResponseEntity<TopicDetails>> describeKafkaTopic(@RequestParam String topicName) throws ExecutionException, InterruptedException {
+        if (log.isInfoEnabled()) {
+            log.info("describeKafkaTopic() : Get Topic Details - START");
+        }
+        return kafkaService.getTopicDescription(topicName)
+                .map(topicDescription -> {
+                    TopicDetails topicDetails = new TopicDetails();
+                    topicDetails.setName(topicName);
+                    topicDetails.setNumPartitions(topicDescription.partitions().size());
+                    topicDetails.setPartitions(topicDescription.partitions());
+                    return ResponseEntity.ok(topicDetails);
+                })
+                .onErrorResume(KafkaException.class, error -> {
+                    // Handle Kafka exception
+                    return Mono.just(ResponseEntity.status(HttpStatus.NOT_FOUND)
+                            .body(new TopicDetails()));
+                })
+                .onErrorResume(Exception.class, error -> {
+                    // Handle other exceptions
+                    return Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                            .body(new TopicDetails()));
+                });
     }
 
     @DeleteMapping(value = AppConstants.KAFKA_TOPIC_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
