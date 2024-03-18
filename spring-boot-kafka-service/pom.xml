@@ -78,12 +78,9 @@
 				<artifactId>maven-pmd-plugin</artifactId>
 				<version>3.21.2</version>
 				<configuration>
-					<linkXref>false</linkXref>
-					<sourceEncoding>UTF-8</sourceEncoding>
-					<!-- Customize rulesets as needed -->
+					<!-- Remove deprecated rule name and use the new one -->
 					<rulesets>
-						<ruleset>rulesets/java/basic.xml</ruleset>
-						<ruleset>rulesets/java/braces.xml</ruleset>
+						<ruleset>/category/java/errorprone.xml/AvoidBranchingStatementAsLastInLoop</ruleset>
 						<!-- Add more rulesets if required -->
 					</rulesets>
 				</configuration>
