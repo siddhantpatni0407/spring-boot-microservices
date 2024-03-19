@@ -1,16 +1,6 @@
 package com.sid.app.config;
 
-import org.apache.kafka.clients.admin.NewTopic;
-import org.apache.kafka.clients.producer.ProducerConfig;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.kafka.core.DefaultKafkaProducerFactory;
-import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.core.ProducerFactory;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author Siddhant Patni
@@ -18,7 +8,7 @@ import java.util.Map;
 @Configuration
 public class KafkaProducerConfig {
 
-    @Autowired
+    /*@Autowired
     private AppProperties properties;
 
     @Bean
@@ -43,6 +33,6 @@ public class KafkaProducerConfig {
     @Bean
     public KafkaTemplate<String, Object> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
-    }
+    }*/
 
 }
