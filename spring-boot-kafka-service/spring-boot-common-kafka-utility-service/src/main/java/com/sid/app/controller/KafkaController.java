@@ -66,7 +66,7 @@ public class KafkaController {
     }
 
     @GetMapping(value = AppConstants.KAFKA_TOPIC_DETAILS_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<ResponseEntity<TopicDetails>> describeKafkaTopic(@RequestParam String topicName) throws ExecutionException, InterruptedException {
+    public Mono<ResponseEntity<TopicDetails>> describeKafkaTopic(@RequestParam(value = "topicName") String topicName) {
         if (log.isInfoEnabled()) {
             log.info("describeKafkaTopic() : Get Topic Details - START");
         }

@@ -6,26 +6,49 @@
 2. [Description](#description)
 3. [Features](#features)
 4. [Usage](#usage)
-5. [Kafka - Sequence Diagram](#kafka---sequence-diagram)
-6. [Kafka - Flow Diagram - 1](#kafka---flow-diagram---1)
-7. [Kafka - Flow Diagram - 2](#kafka---flow-diagram---2)
-8. [Kafka - Flow Diagram - 3](#kafka---flow-diagram---3)
-9. [Kafka - Flow Diagram - 4](#kafka---flow-diagram---4)
-10. [Kafka - Block Diagram](#kafka---block-diagram)
-11. [Apache Kafka Commands](#apache-kafka-commands)
-12. [API Details](#api-details)
-    - [1. Create Topic](#1-create-topic)
-    - [2. Get All Topics](#2-get-all-topics)
-    - [3. Delete Topic](#3-delete-topic)
-    - [4. Publish Message](#4-publish-message)
-    - [5. Send Events](#5-send-events)
-13. [API Summary](#api-summary)
+5. [Key Concepts](#key-concepts)
+    - [Kafka Cluster](#kafka-cluster)
+    - [Kafka Broker](#kafka-broker)
+    - [Kafka Producer](#kafka-producer)
+    - [Kafka Consumer](#kafka-consumer)
+    - [Kafka Topics](#kafka-topics)
+    - [Partitions](#partitions)
+    - [Offsets](#offsets)
+    - [Consumer Groups](#consumer-groups)
+    - [Serialization](#serialization)
+6. [Demo Application](#demo-application)
+7. [Diagrams](#diagrams)
+    - [Kafka - Sequence Diagram](#kafka---sequence-diagram)
+    - [Kafka - Sequence Diagram - Error Handling Implementation](#kafka---sequence-diagram---error-handling-implementation)
+    - [Kafka - Flow Diagram - 1](#kafka---flow-diagram---1)
+    - [Kafka - Flow Diagram - 2](#kafka---flow-diagram---2)
+    - [Kafka - Flow Diagram - 3](#kafka---flow-diagram---3)
+    - [Kafka - Flow Diagram - 4](#kafka---flow-diagram---4)
+    - [Kafka - Block Diagram](#kafka---block-diagram)
+8. [Apache Kafka Commands](#apache-kafka-commands)
+    - [Prerequisites](#prerequisites)
+    - [Steps - For Open Source Kafka Server](#steps---for-open-source-kafka-server)
+    - [API Details](#api-details)
+        - [1. Start Server](#1-start-server)
+        - [2. Stop Server](#2-stop-server)
+        - [3. Create Topic](#3-create-topic)
+        - [4. Get All Topics](#4-get-all-topics)
+        - [5. Get Topic Details](#5-get-topic-details)
+        - [6. Delete Topic](#6-delete-topic)
+        - [7. Delete Kafka Logs](#7-delete-kafka-logs)
+        - [8. Publish Message](#8-publish-message)
+        - [9. Send Events](#9-send-events)
+        - [10. Publish Events (Error Handling)](#10-publish-events-error-handling)
+    - [API Summary](#api-summary)
+        - [Overview](#overview)
+        - [API Endpoints](#api-endpoints)
+
 
 ## Introduction
 
 Spring Boot application for interacting with Apache Kafka.
 
-- This contains 2 modules
+- This contains 4 modules
     1. spring-boot-common-kafka-utility-service
     2. spring-boot-kafka-producer
     3. spring-boot-kafka-consumer
@@ -33,10 +56,12 @@ Spring Boot application for interacting with Apache Kafka.
 
 ## Description
 
-This service enables communication with Apache Kafka through RESTful APIs. It consists of two modules:
+This service enables communication with Apache Kafka through RESTful APIs. It consists of 4 modules:
 
+- `spring-boot-common-kafka-utility-service` : Common Utility for Kafka Server
 - `spring-boot-kafka-producer`: Allows publishing messages to Kafka topics.
 - `spring-boot-kafka-consumer`: Facilitates consuming messages from Kafka topics.
+- `spring-boot-kafka-producer-consumer-error-handling`: Error handling implementation in Producer and Consumer.
 
 ## Features
 
@@ -51,7 +76,69 @@ Users can interact with the service via its RESTful API endpoints to manage Kafk
 
 For detailed usage instructions and examples, refer to the API documentation in the respective service modules.
 
-## Kafka - Sequence Diagram
+## Key Concepts
+
+Apache Kafka is a distributed, fault-tolerant, and highly scalable message broker and stream processing platform. It was originally developed by LinkedIn and later open-sourced as an Apache Software Foundation project. Kafka is designed to handle large volumes of data streams in a real-time and fault-tolerant manner.
+
+Key Components of Kafka:
+Producer: An application that publishes messages to Kafka topics.
+
+- **Consumer**: An application that subscribes to topics and processes the published messages.
+- **Broker**: Kafka brokers form the core of the Kafka cluster, storing and managing the streams of records.
+- **Topic**: A category or feed name to which records are published. Topics in Kafka are used to categorize messages.
+- **Partition**: Topics are divided into partitions, allowing Kafka to parallelize processing and scale horizontally.
+- **Zookeeper**: Kafka relies on Apache ZooKeeper for distributed coordination and management of the Kafka cluster.
+  ![Kafka topics](img/kafka_overview.png)
+
+### Kafka Cluster
+A Kafka cluster is a group of one or more Kafka brokers (servers) working together to manage the storage and exchange of data in the form of messages. Kafka is designed to operate as a distributed system, and a cluster allows it to scale horizontally, provide fault tolerance, and handle large volumes of data across multiple nodes.
+![Kafka topics](img/kafka_cluster.png)
+
+### Kafka Broker
+Kafka brokers form the core of the Kafka cluster, storing and managing the streams of records.
+![kafka_broker.png](src%2Fmain%2Fresources%2Fartifacts%2Fkafka_broker.png)
+
+### Kafka Producer
+Producers are applications or systems that publish messages to Kafka topics. Producers determine which partition within a topic a message should be sent to.
+![kafka_producer.png](src%2Fmain%2Fresources%2Fartifacts%2Fkafka_producer.png)
+
+### Kafka Consumer
+Consumers are applications or systems that subscribe to Kafka topics and process the messages. Consumers can be part of a consumer group, allowing them to parallelize the processing of messages.
+![kafka_consumer.png](src%2Fmain%2Fresources%2Fartifacts%2Fkafka_consumer.png)
+
+### Kafka Topics
+
+A Kafka topic is a category or feed name to which records (messages) are published. Topics help organize and categorize messages.
+![kafka_topic.png](src%2Fmain%2Fresources%2Fartifacts%2Fkafka_topic.png)
+---
+
+### Partitions
+
+Topics are divided into partitions, allowing for parallel processing and scalability. Each partition is assigned to a specific broker.
+![kafka_partitions.png](src%2Fmain%2Fresources%2Fartifacts%2Fkafka_partitions.png)
+---
+
+### Offsets
+
+Offsets represent the position of a message within a partition. Consumers use offsets to track their progress and resume processing from the last committed offset.
+![kafka_offset.png](src%2Fmain%2Fresources%2Fartifacts%2Fkafka_offset.png)
+---
+
+### Consumer Groups
+
+Consumer groups allow for parallel and scalable message processing. Consumers within a group coordinate to consume messages from one or more partitions.
+![kafka_consumer_groups.png](src%2Fmain%2Fresources%2Fartifacts%2Fkafka_consumer_groups.png)
+---
+
+### Serialization
+Serialization is the process of converting data to a format suitable for transmission. Kafka allows custom serializers for key and value objects.
+
+## Demo Application
+![kafka_demo_application.png](src%2Fmain%2Fresources%2Fartifacts%2Fkafka_demo_application.png)
+
+## Diagrams
+
+### Kafka - Sequence Diagram
 
 ```mermaid
 sequenceDiagram
@@ -78,7 +165,29 @@ sequenceDiagram
     end   
 ```
 
-## Kafka - Flow Diagram - 1
+### Kafka - Sequence Diagram - Error Handling Implementation
+
+```mermaid
+sequenceDiagram
+    participant Producer
+    participant RetryableTopic
+    participant Consumer
+    participant DltHandler
+    Producer ->> RetryableTopic: Send message
+    alt Message processed successfully
+        RetryableTopic ->> Consumer: Deliver message
+        Consumer ->> RetryableTopic: Acknowledge
+    else Processing fails, max retries not reached
+        RetryableTopic ->> Consumer: Retry message
+        Note over Consumer: Process message again
+    else Processing fails, max retries reached
+        RetryableTopic ->> DltHandler: Send to DLT
+        DltHandler ->> RetryableTopic: Handle failure
+        Note right of DltHandler: Log or take action
+    end
+```
+
+### Kafka - Flow Diagram - 1
 
 ```mermaid
 flowchart TD
@@ -92,7 +201,7 @@ flowchart TD
 
 ```
 
-## Kafka - Flow Diagram - 2
+### Kafka - Flow Diagram - 2
 
 ```mermaid
 flowchart LR
@@ -120,7 +229,7 @@ flowchart LR
     StreamProcessing[Kafka Streams] -->|Process & Transform| Topics
 ```
 
-## Kafka - Flow Diagram - 3
+### Kafka - Flow Diagram - 3
 
 ```mermaid
 flowchart TB
@@ -151,7 +260,7 @@ flowchart TB
     KafkaCluster --> Topics
 ```
 
-## Kafka - Flow Diagram - 4
+### Kafka - Flow Diagram - 4
 
 ```mermaid
 flowchart TD
@@ -188,7 +297,7 @@ flowchart TD
     Zookeeper -->|Manages| BrokerC
 ```
 
-## Kafka - Block Diagram
+### Kafka - Block Diagram
 
 ```mermaid
 graph TD
@@ -215,7 +324,7 @@ This README provides a guide on how to use Apache Kafka with various commands.
 Before running Kafka commands, make sure you have Kafka installed on your system. If not, download and install it from
 the [official website](https://kafka.apache.org/downloads).
 
-## Steps
+## Steps - FOr Open Source Kafka Server
 
 1. **Go to Kafka Installation Directory**: Navigate to the Kafka server installation directory on your system. For
    example:
@@ -272,9 +381,37 @@ the [official website](https://kafka.apache.org/downloads).
 
 ## API Details
 
-### 1. Create Topic
+### 1. Start Server
 
-- **URL** - http://localhost:8081/api/v1/kafka-service/kafka/topic?topicName=sid-test&partition=3
+- **URL** - http://localhost:8081/api/v1/kafka-service/kafka/start-server
+- **HTTP Method** - POST
+- **Description:** Start the Kafka server.
+
+- **Response**
+
+````
+{
+    "status": "Zookeeper and Kafka servers started successfully."
+}
+````
+
+### 2. Stop Server
+
+- **URL** - http://localhost:8081/api/v1/kafka-service/kafka/stop-server
+- **HTTP Method** - POST
+- **Description:** Stop the Kafka server.
+
+- **Response**
+
+````
+{
+    "status": "Zookeeper and Kafka servers stopped successfully."
+}
+````
+
+### 3. Create Topic
+
+- **URL** - http://localhost:8081/api/v1/kafka-service/kafka/topic?topicName={topic-name}&partition={partition}
 - **HTTP Method** - POST
 - **Description:** Creates a new Kafka topic with the specified name and partition.
 - **Request Parameters:**
@@ -285,12 +422,11 @@ the [official website](https://kafka.apache.org/downloads).
 
 ````
 {
-  "status": "Topic created successfully",
-  "errorMessage": null
+    "status": "Topic -[topic-name]  created successfully"
 }
 ````
 
-### 2. Get All Topics
+### 4. Get All Topics
 
 - **URL** - http://localhost:8081/api/v1/kafka-service/kafka/topic
 - **HTTP Method** - GET
@@ -306,11 +442,48 @@ the [official website](https://kafka.apache.org/downloads).
 ]
 ````
 
-### 3. Delete Topic
+### 5. Get Topic Details
 
-- **URL** - http://localhost:8081/api/v1/kafka-service/kafka/topic
+- **URL** - http://localhost:8081/api/v1/kafka-service/kafka/topic/details?topicName={topic-name}
+- **HTTP Method** - GET
+- **Description:**  Retrieves a list of all existing Kafka topics.
+- **Request Parameters:**
+    - `topicName`: Name of the Kafka topic to create.
+
+- **Response**
+
+````
+{
+    "name": "kafka-demo",
+    "numPartitions": 1,
+    "partitions": [
+        {
+            "partition": "0",
+            "leader": {
+                "empty": false
+            },
+            "replicas": [
+                {
+                    "empty": false
+                }
+            ],
+            "isr": [
+                {
+                    "empty": false
+                }
+            ]
+        }
+    ]
+}
+````
+
+### 6. Delete Topic
+
+- **URL** - http://localhost:8081/api/v1/kafka-service/kafka/topic?topicName={topic-name}
 - **HTTP Method** - DELETE
 - **Description:**  Deletes the specified Kafka topic.
+- **Request Parameters:**
+    - `topicName`: Name of the Kafka topic to create.
 
 - **Response**
 
@@ -321,7 +494,21 @@ the [official website](https://kafka.apache.org/downloads).
 }
 ````
 
-### 4. Publish Message
+### 7. Delete Kafka Logs
+
+- **URL** - http://localhost:8081/api/v1/kafka-service/kafka/logs
+- **HTTP Method** - DELETE
+- **Description:**  Deletes the kafka logs.
+
+- **Response**
+
+````
+{
+    "status": "Kafka and Zookeeper logs deleted successfully"
+}
+````
+
+### 8. Publish Message
 
 - **URL** - http://localhost:8082/api/v1/kafka-service/publish
 - **HTTP Method** - GET
@@ -336,7 +523,7 @@ the [official website](https://kafka.apache.org/downloads).
 }
 ````
 
-### 5. Send Events
+### 9. Send Events
 
 - **URL** - http://localhost:8082/api/v1/kafka-service/publish
 - **HTTP Method** - POST
@@ -362,34 +549,112 @@ the [official website](https://kafka.apache.org/downloads).
 }
 ````
 
+### 10. Publish Events (Error Handling)
+
+- **URL** - http://localhost:8084/api/v1/kafka-service/error-handling/producer
+- **HTTP Method** - POST
+- **Description:**  Publishes events to a Kafka topic for Error handling.
+
+- **Response**
+
+````
+{
+    "status": "Message published successfully"
+}
+````
+
 ## API Summary
 
-### 1. Create Topic
+### Overview
 
-- **URL**: /api/v1/kafka-service/kafka/topic
-- **Method**: POST
-- **Description**: Creates a new Kafka topic with the specified name and partition count.
+This document outlines the API endpoints provided by the Kafka Service for managing Kafka topics, publishing messages, and handling errors.
 
-### 2. Get All Topics
+### API Endpoints
 
-- **URL**: /api/v1/kafka-service/kafka/topic
-- **Method**: GET
-- **Description**: Retrieves a list of all existing Kafka topics.
+### 1. Start Server
 
-### 3. Delete Topic
+- **URL:** http://localhost:8081/api/v1/kafka-service/kafka/start-server
+- **Method:** POST
+- **Description:** Starts the Kafka server.
+- **Response:**
+    - Status: Zookeeper and Kafka servers started successfully.
 
-- **URL**: /api/v1/kafka-service/kafka/topic
-- **Method**: DELETE
-- **Description**: Deletes the specified Kafka topic.
+### 2. Stop Server
 
-### 4. Publish Message
+- **URL:** http://localhost:8081/api/v1/kafka-service/kafka/stop-server
+- **Method:** POST
+- **Description:** Stops the Kafka server.
+- **Response:**
+    - Status: Zookeeper and Kafka servers stopped successfully.
 
-- **URL**: /api/v1/kafka-service/publish
-- **Method**: GET
-- **Description**: Publishes a message to a Kafka topic.
+### 3. Create Topic
 
-### 5. Send Events
+- **URL:** http://localhost:8081/api/v1/kafka-service/kafka/topic
+- **Method:** POST
+- **Description:** Creates a new Kafka topic.
+- **Request Parameters:**
+    - topicName: Name of the Kafka topic.
+    - partition: Number of partitions for the new topic.
+- **Response:**
+    - Status: Topic created successfully.
 
-- **URL**: /api/v1/kafka-service/publish
-- **Method**: POST
-- **Description**: Publishes events to a Kafka topic.
+### 4. Get All Topics
+
+- **URL:** http://localhost:8081/api/v1/kafka-service/kafka/topic
+- **Method:** GET
+- **Description:** Retrieves a list of all existing Kafka topics.
+- **Response:**
+    - List of topic names.
+
+### 5. Get Topic Details
+
+- **URL:** http://localhost:8081/api/v1/kafka-service/kafka/topic/details?topicName={topic-name}
+- **Method:** GET
+- **Description:** Retrieves details of a specific Kafka topic.
+- **Request Parameters:**
+    - topicName: Name of the Kafka topic.
+- **Response:**
+    - Details of the specified Kafka topic.
+
+### 6. Delete Topic
+
+- **URL:** http://localhost:8081/api/v1/kafka-service/kafka/topic?topicName={topic-name}
+- **Method:** DELETE
+- **Description:** Deletes a Kafka topic.
+- **Request Parameters:**
+    - topicName: Name of the Kafka topic.
+- **Response:**
+    - Status: Topic deleted successfully.
+
+### 7. Delete Kafka Logs
+
+- **URL:** http://localhost:8081/api/v1/kafka-service/kafka/logs
+- **Method:** DELETE
+- **Description:** Deletes Kafka logs.
+- **Response:**
+    - Status: Kafka and Zookeeper logs deleted successfully.
+
+### 8. Publish Message
+
+- **URL:** http://localhost:8082/api/v1/kafka-service/publish
+- **Method:** GET
+- **Description:** Publishes a message to a Kafka topic.
+- **Response:**
+    - Status: Message published successfully.
+
+### 9. Send Events
+
+- **URL:** http://localhost:8082/api/v1/kafka-service/publish
+- **Method:** POST
+- **Description:** Publishes events to a Kafka topic.
+- **Request Body:** Customer object containing event details.
+- **Response:**
+    - Status: Events published successfully.
+
+### 10. Publish Events (Error Handling)
+
+- **URL:** http://localhost:8084/api/v1/kafka-service/error-handling/producer
+- **Method:** POST
+- **Description:** Publishes events to a Kafka topic for error handling.
+- **Response:**
+    - Status: Message published successfully.
