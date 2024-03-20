@@ -42,7 +42,7 @@
     - [API Summary](#api-summary)
         - [Overview](#overview)
         - [API Endpoints](#api-endpoints)
-
+9. [Postman Collection](#Postman-Collection)
 
 ## Introduction
 
@@ -658,3 +658,9 @@ This document outlines the API endpoints provided by the Kafka Service for manag
 - **Description:** Publishes events to a Kafka topic for error handling.
 - **Response:**
     - Status: Message published successfully.
+
+## Postman Collection
+
+```
+https://github.com/siddhantpatni0407/spring-boot-microservices/blob/master/spring-boot-kafka-service/postman_collection/collection/spring-boot-kafka-service.postman_collection.json
+```
