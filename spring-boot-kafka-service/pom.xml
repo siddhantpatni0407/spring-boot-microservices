@@ -6,6 +6,7 @@
 		<module>spring-boot-common-kafka-utility-service</module>
 		<module>spring-boot-kafka-producer</module>
 		<module>spring-boot-kafka-consumer</module>
+		<module>spring-boot-kafka-producer-consumer-error-handling</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -56,6 +57,11 @@
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-pmd-plugin</artifactId>
 			<version>3.21.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>5.7.0</version> <!-- Use the latest version available -->
 		</dependency>
 	</dependencies>
 
