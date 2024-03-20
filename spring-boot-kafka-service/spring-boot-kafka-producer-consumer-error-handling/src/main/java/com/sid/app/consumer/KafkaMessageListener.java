@@ -28,6 +28,8 @@ public class KafkaMessageListener {
 
     // Define your Kafka listener method
     @RetryableTopic(attempts = "4")// 3 topic N-1
+    //@RetryableTopic(attempts = "4", backoff = @Backoff(delay = 3000, multiplier = 1.5, maxDelay = 15000))      // add delay in retry
+    //@RetryableTopic(attempts = "4", exclude = {NullPointerException.class, RuntimeException.class})            // exclude exception from retry
     @KafkaListener(topics = "${spring.kafka.consumer.topic}", groupId = "${spring.kafka.consumer.group-id}")
     public void consumeEvents(Customer customer, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic, @Header(KafkaHeaders.OFFSET) long offset) {
         if (log.isInfoEnabled()) {
