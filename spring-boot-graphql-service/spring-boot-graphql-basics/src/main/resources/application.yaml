@@ -18,12 +18,12 @@ spring:
       path: /api/v1/graphql-basics/graphiql
       enabled: 'true'
     schema:
-      locations: 'classpath:graphql/sec03'
+      locations: classpath:graphql/sec04
     path: /api/v1/graphql-basics/graphql
     websocket:
       path: /api/v1/graphql-basics/graphql
 
-sec: sec03
+sec: sec04
 
 server:
   port: 8081
