@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: spring-boot-graphql-basics
+
+  main:
+    banner-mode: null
+  banner:
+    location: 'classpath:banner.txt'
+
+  security:
+    user:
+      name: admin
+      password: admin
+      roles: ACTUATOR_ADMIN
+
+  graphql:
+    graphiql:
+      path: /api/v1/graphql-basics/graphiql
+      enabled: 'true'
+    schema:
+      locations: 'classpath:graphql/sec03'
+    path: /api/v1/graphql-basics/graphql
+    websocket:
+      path: /api/v1/graphql-basics/graphql
+
+sec: sec03
+
+server:
+  port: 8081
+
+audit:
+  connector:
+    url: 'http://localhost:8085/audit'
+    username: audit
+    password: audit
+
+logging:
+  level:
+    root: INFO
+    com:
+      sid: INFO
