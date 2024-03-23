@@ -561,6 +561,256 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "sec06",
+					"item": [
+						{
+							"name": "Fetch all customers with orders",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "{\r\n  customers {\r\n    id\r\n    name\r\n    orders {\r\n      id\r\n      description\r\n    }\r\n  }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/v1/graphql-basics/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"graphql-basics",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch all customers without orders",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "{\r\n  customers {\r\n    id\r\n    name\r\n  }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/v1/graphql-basics/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"graphql-basics",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Custoners (REST)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8081/api/v1/graphql-basics/customers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"graphql-basics",
+										"customers"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "sec07",
+					"item": [
+						{
+							"name": "Fetch all customers with orders",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "{\r\n  customers {\r\n    id\r\n    name\r\n    orders {\r\n      id\r\n      description\r\n    }\r\n  }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/v1/graphql-basics/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"graphql-basics",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "sec08",
+					"item": [
+						{
+							"name": "Get Levels",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "{\r\n  level1 {\r\n    level2 {\r\n      level3\r\n      {\r\n        level4 {\r\n          level5{\r\n            id\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/v1/graphql-basics/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"graphql-basics",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "sec09",
+					"item": [
+						{
+							"name": "Get all types",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "{\r\n  get {\r\n    id\r\n    height\r\n    temperature\r\n    city\r\n    isValid\r\n    distance\r\n    ageInYears\r\n    ageInMonths\r\n    bigDecimal\r\n    bigInteger\r\n    date\r\n    time\r\n    dateTime\r\n    car\r\n  }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/v1/graphql-basics/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"graphql-basics",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Products",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "{\r\n  products {\r\n    name\r\n    attributes\r\n  }\r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/v1/graphql-basics/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"graphql-basics",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "sec10",
+					"item": [
+						{
+							"name": "Get Products",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "{\r\n  products {\r\n    id\r\n    description\r\n    price\r\n  }\r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/v1/graphql-basics/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"graphql-basics",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
