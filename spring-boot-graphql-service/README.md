@@ -7,7 +7,7 @@ https://github.com/siddhantpatni0407/spring-boot-microservices/blob/master/sprin
 ```
 
 ## Notes
-- To download Altair App for Graphql -
+- Altair App for Graphql -
 
 ```
 https://altairgraphql.dev/#download
