@@ -58,22 +58,3 @@
    
 #   14. spring-boot-graphql-service
    - Spring Boot application with Graphql.
-   
-## Service Details
-
-| Service Name                             | Description                                                                   |
-|------------------------------------------|-------------------------------------------------------------------------------|
-| **spring-boot-email-service**            | Integration of Chat GPT API using Spring boot microservice.                    |
-| **spring-boot-chatgpt**                  | Spring boot chatgpt integration.                                              |
-| **spring-boot-common-utility-service**    | Utility service.                                                              |
-| **spring-boot-jwt-service**               | JWT service.                                                                  |
-| **spring-boot-scheduler-service**         | Scheduler based service using cron job.                                       |
-| **spring-boot-batch-processing-service**  | Spring Boot app using Spring Batch and Spring reactive for the batch processing. |
-| **spring-boot-batch-partitioning-service**| Spring Boot app using Spring Batch with partitioning and Spring reactive for the batch processing. |
-| **spring-boot-batch-fault-tolerance-service** | Spring Boot App using Spring Batch with fault tolerance and Spring reactive for the batch processing. |
-| **spring-boot-batch-file-upload-service** | Spring Boot App using Spring Batch with dynamic file upload and Spring reactive for the batch processing. |
-| **spring-boot-employee-mgmt-service**    | Spring Boot App for Employee Management using Spring Reactive.                |
-| **spring-boot-file-storage-service**     | Spring Boot App to Store and download the file from database.                 |
-| **spring-boot-jpa-pagination-service**   | Spring Boot JPA Pagination Service.                                           |
-| **spring-boot-kafka-service**            | Spring Boot application for interacting with Apache Kafka.                    |
-| **spring-boot-graphql-service**          | Spring Boot application with GraphQL.                                         |
