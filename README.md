@@ -39,3 +39,6 @@ Spring Boot Microservices
    
 #   13. spring-boot-kafka-service
    - Spring Boot application for interacting with Apache Kafka.
+   
+#   14. spring-boot-graphql-service
+   - Spring Boot application with Graphql.
