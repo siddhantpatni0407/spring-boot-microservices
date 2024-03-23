@@ -5,3 +5,10 @@
 ```
 https://github.com/siddhantpatni0407/spring-boot-microservices/blob/master/spring-boot-kafka-service/postman_collection/collection
 ```
+
+## Notes
+- To download Altair App for Graphql -
+
+```
+https://altairgraphql.dev/#download
+```
