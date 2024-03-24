@@ -845,6 +845,40 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "sec12",
+					"item": [
+						{
+							"name": "Say Hello",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query SayHello($name: String!) {\r\n    sayHello(name: $name)\r\n}",
+										"variables": "{\r\n    \"name\" : \"Siya\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/v1/graphql-basics/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"graphql-basics",
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
