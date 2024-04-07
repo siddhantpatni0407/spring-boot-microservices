@@ -15,7 +15,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-@Table(name = "WUser")
+@Table(name = "User")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Serializable, UserDetails {
 

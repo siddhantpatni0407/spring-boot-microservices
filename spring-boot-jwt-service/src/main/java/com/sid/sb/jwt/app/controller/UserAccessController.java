@@ -71,7 +71,7 @@ public class UserAccessController {
     public ResponseEntity<Object> register(@RequestBody UserRegisterRequestDTO request) {
 
         request.setPassword(passwordEncoder.encode(request.getPassword()));
-        return EntityResponse.generateResponse("Regsiter User", HttpStatus.OK, userService.createUser(request));
+        return EntityResponse.generateResponse("Register User", HttpStatus.OK, userService.createUser(request));
     }
 
     @GetMapping(value = AppConstants.USER_PROFILE_ENDPOINT, produces = MediaType.APPLICATION_JSON_VALUE)
