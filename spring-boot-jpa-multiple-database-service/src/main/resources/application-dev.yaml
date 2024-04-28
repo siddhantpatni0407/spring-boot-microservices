@@ -12,12 +12,12 @@ spring:
     datasource:
         mysql:
             driver-class-name: com.mysql.cj.jdbc.Driver
-            url: jdbc:mysql://localhost:3306/jpa_multi_datasource_db
+            url: jdbc:mysql://localhost:3306/multi_datasource_db?createDatabaseIfNotExist=true
             username: root
             password: root
         postgresql:
             driver-class-name: org.postgresql.Driver
-            url: jdbc:postgresql://localhost:5432/jpa_multi_datasource_db?currentSchema=dev
+            url: jdbc:postgresql://localhost:5432/multi_datasource_db?currentSchema=dev
             username: postgres
             password: root
 

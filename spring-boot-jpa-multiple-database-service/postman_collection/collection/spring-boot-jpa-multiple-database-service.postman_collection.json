@@ -47,7 +47,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"\",\r\n    \"website\": \" \"\r\n}",
+					"raw": "{\r\n    \"name\": \"Siddhant Patni\",\r\n    \"website\": \"www.siddhantpatni.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -168,7 +168,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstName\": \"\",\r\n    \"lastName\": \"\",\r\n    \"email\": \" \"\r\n}",
+					"raw": "{\r\n    \"firstName\": \"siddhant\",\r\n    \"lastName\": \"patni\",\r\n    \"email\": \"siddhant4patni@gmail.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
