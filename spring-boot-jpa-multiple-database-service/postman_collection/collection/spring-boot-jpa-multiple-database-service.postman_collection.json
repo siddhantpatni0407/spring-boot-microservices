@@ -1,0 +1,259 @@
+{
+	"info": {
+		"_postman_id": "95b8937e-338e-426d-80a4-8201b686f26e",
+		"name": "spring-boot-jpa-multiple-database-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6002209"
+	},
+	"item": [
+		{
+			"name": "Save Account",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Correlation-ID",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "capabilityConsumer",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "capabilityConsumerTimestamp",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"\",\r\n    \"website\": \" \"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/spring-boot-jpa-multiple-database-service/saveAccount",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"spring-boot-jpa-multiple-database-service",
+						"saveAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Account Details",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Correlation-ID",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "capabilityConsumer",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "capabilityConsumerTimestamp",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/spring-boot-jpa-multiple-database-service/fetchAccounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"spring-boot-jpa-multiple-database-service",
+						"fetchAccounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save User",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Correlation-ID",
+						"value": "1234567",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "capabilityConsumer",
+						"value": "HPM",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "capabilityConsumerTimestamp",
+						"value": "2022-02-22T12:30:34",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"\",\r\n    \"lastName\": \"\",\r\n    \"email\": \" \"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/spring-boot-jpa-multiple-database-service/saveUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"spring-boot-jpa-multiple-database-service",
+						"saveUser"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all User Details",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Correlation-ID",
+						"value": "1234567",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "capabilityConsumer",
+						"value": "HPM",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "capabilityConsumerTimestamp",
+						"value": "2022-02-22T12:30:34",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/spring-boot-jpa-multiple-database-service/fetchUsers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"spring-boot-jpa-multiple-database-service",
+						"fetchUsers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

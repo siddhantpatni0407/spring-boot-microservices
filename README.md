@@ -17,6 +17,7 @@
 13. [spring-boot-kafka-service](#13-spring-boot-kafka-service)
 14. [spring-boot-graphql-service](#14-spring-boot-graphql-service)
 15. [spring-boot-excel-data-processor-service](#15-spring-boot-excel-data-processor-service)
+16. [spring-boot-jpa-multiple-database-service](#16-spring-boot-jpa-multiple-database-service)
 ---
 
 ## 1. spring-boot-email-service
@@ -63,3 +64,6 @@
 
 ## 15. spring-boot-excel-data-processor-service
 - Spring Boot Application to read the excel data and store it into database.
+
+## 16. spring-boot-jpa-multiple-database-service
+- Spring Boot application to  connect to multiple datasource.
