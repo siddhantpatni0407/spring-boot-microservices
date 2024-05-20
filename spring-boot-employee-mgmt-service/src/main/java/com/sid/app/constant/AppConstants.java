@@ -10,4 +10,6 @@ public class AppConstants {
      */
     public static final String EMPLOYEE_ENDPOINT = "/api/v1/employee-mgmt-service/employee";
 
+    public static final String DEFAULT_USER = "DEFAULT_USER";
+
 }

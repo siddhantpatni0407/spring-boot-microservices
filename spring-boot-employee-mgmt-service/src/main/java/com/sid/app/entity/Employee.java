@@ -1,7 +1,9 @@
 package com.sid.app.entity;
 
+import com.sid.app.audit.Auditable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -16,7 +18,8 @@ import java.sql.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Employee {
+@EqualsAndHashCode(callSuper = true)
+public class Employee extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
