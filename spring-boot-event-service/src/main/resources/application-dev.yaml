@@ -1,0 +1,26 @@
+spring:
+    main:
+        banner-mode: #off
+        allow-circular-references: true
+    banner:
+        location: classpath:banner.txt
+    security:
+        user:
+            name: admin
+            password: admin
+            roles: ACTUATOR_ADMIN
+
+server:
+    port: 8080
+
+audit:
+    connector:
+        url: http://localhost:8085/audit
+        username: audit
+        password: audit
+
+logging:
+    level:
+        root: INFO
+        com:
+            sid: INFO
