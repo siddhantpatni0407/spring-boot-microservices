@@ -18,6 +18,7 @@
 14. [spring-boot-graphql-service](#14-spring-boot-graphql-service)
 15. [spring-boot-excel-data-processor-service](#15-spring-boot-excel-data-processor-service)
 16. [spring-boot-jpa-multiple-database-service](#16-spring-boot-jpa-multiple-database-service)
+17. [spring-boot-event-service](#17-spring-boot-event-service)
 ---
 
 ## 1. spring-boot-email-service
@@ -67,3 +68,6 @@
 
 ## 16. spring-boot-jpa-multiple-database-service
 - Spring Boot application to  connect to multiple datasource.
+
+## 17. spring-boot-event-service
+- Spring Boot application for event handling.
