@@ -1,0 +1,59 @@
+spring:
+    main:
+        banner-mode: #off
+    banner:
+        location: classpath:banner.txt
+    # DB configuration
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/hotel_mgmt_db
+        username: postgres
+        password: root
+        properties:
+            charSet: UTF-8
+        hikari:
+            minimumIdle: 2
+            maximumPoolSize: 25
+            idleTimeout: 10000
+            poolName: HikariCP
+            maxLifetime: 7200000
+            connectionTimeout: 30000
+            schema: dev
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                default_schema: dev
+                hbm2ddl:
+                    auto:
+                        update
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+                jdbc:
+                    time_zone: UTC
+                    lob:
+                        non_contextual_creation: true
+                globally_quoted_identifiers: true
+                format_sql: true
+
+aws:
+    s3:
+        access-key: "YOUR_AWS_ACCESS_KEY"
+        secrete-key: "YOUR_AWS_SECRET_KEY"
+        region: "YOUR_AWS_REGION"
+
+server:
+    port: 8080
+
+audit:
+    connector:
+        url: http://localhost:8085/audit
+        username: audit
+        password: audit
+
+logging:
+    level:
+        root: INFO
+        com:
+            sid: INFO

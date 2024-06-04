@@ -1,0 +1,719 @@
+{
+	"info": {
+		"_postman_id": "d721c03a-4248-49e5-b681-e4da34c6af63",
+		"name": "spring-boot-hotel-booking-management-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6002209"
+	},
+	"item": [
+		{
+			"name": "MS - LOCAL",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567"
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM"
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"siddhant4patni@gmail.com\",\r\n    \"name\": \"Siddhant Patni\",\r\n    \"phoneNumber\": \"7588811796\",\r\n    \"password\": \"siddhant\",\r\n    \"role\": \"USER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/hotel-booking-mgmt-service/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"hotel-booking-mgmt-service",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567"
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM"
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/hotel-booking-mgmt-service/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"hotel-booking-mgmt-service",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MTc1MzIyNjUsImV4cCI6MTcxNzYzMzA2NX0.9jh_O_FGKYqkWpReLt-aG4X7gmAyqwKAgWmG6Dw2Z2g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567"
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM"
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/hotel-booking-mgmt-service/users/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"hotel-booking-mgmt-service",
+								"users",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MTc1MzIyNjUsImV4cCI6MTcxNzYzMzA2NX0.9jh_O_FGKYqkWpReLt-aG4X7gmAyqwKAgWmG6Dw2Z2g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567"
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM"
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/hotel-booking-mgmt-service/users/get-by-id/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"hotel-booking-mgmt-service",
+								"users",
+								"get-by-id",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MTc1MzIyNjUsImV4cCI6MTcxNzYzMzA2NX0.9jh_O_FGKYqkWpReLt-aG4X7gmAyqwKAgWmG6Dw2Z2g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567"
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM"
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/hotel-booking-mgmt-service/users/delete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"hotel-booking-mgmt-service",
+								"users",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user booking history",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzaWRkaGFudDRwYXRuaUBnbWFpbC5jb20iLCJpYXQiOjE3MTc1MzI2MTMsImV4cCI6MTcxNzYzMzQxM30.uo3SOgWVYXzvC9VV_qsU7Npb4W2mVpVpXOHL_WqlaI0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567"
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM"
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/hotel-booking-mgmt-service/users/get-user-bookings/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"hotel-booking-mgmt-service",
+								"users",
+								"get-user-bookings",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MTc1MzI4NzIsImV4cCI6MTcxNzYzMzY3Mn0.j6377RNicFOjbriRqYmpNFnKfT27Dc0yeRcN3luBaMc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567"
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM"
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/hotel-booking-mgmt-service/rooms/add?photoUrl=https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg&roomType=AC&roomPrice=5000&roomDescription=Room 1001, 3rd Floor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"hotel-booking-mgmt-service",
+								"rooms",
+								"add"
+							],
+							"query": [
+								{
+									"key": "photoUrl",
+									"value": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg"
+								},
+								{
+									"key": "roomType",
+									"value": "AC"
+								},
+								{
+									"key": "roomPrice",
+									"value": "5000"
+								},
+								{
+									"key": "roomDescription",
+									"value": "Room 1001, 3rd Floor"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get rooms",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MTc1MzIyNjUsImV4cCI6MTcxNzYzMzA2NX0.9jh_O_FGKYqkWpReLt-aG4X7gmAyqwKAgWmG6Dw2Z2g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567"
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM"
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/hotel-booking-mgmt-service/rooms/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"hotel-booking-mgmt-service",
+								"rooms",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all rooms types",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MTc1MzIyNjUsImV4cCI6MTcxNzYzMzA2NX0.9jh_O_FGKYqkWpReLt-aG4X7gmAyqwKAgWmG6Dw2Z2g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567"
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM"
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/hotel-booking-mgmt-service/rooms/types",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"hotel-booking-mgmt-service",
+								"rooms",
+								"types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get room by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MTc1MzIyNjUsImV4cCI6MTcxNzYzMzA2NX0.9jh_O_FGKYqkWpReLt-aG4X7gmAyqwKAgWmG6Dw2Z2g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567"
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM"
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/hotel-booking-mgmt-service/rooms/get-by-id/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"hotel-booking-mgmt-service",
+								"rooms",
+								"get-by-id",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all available rooms",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MTc1MzIyNjUsImV4cCI6MTcxNzYzMzA2NX0.9jh_O_FGKYqkWpReLt-aG4X7gmAyqwKAgWmG6Dw2Z2g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567"
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM"
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/hotel-booking-mgmt-service/rooms/all-available-rooms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"hotel-booking-mgmt-service",
+								"rooms",
+								"all-available-rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get available rooms by date and type",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MTc1MzIyNjUsImV4cCI6MTcxNzYzMzA2NX0.9jh_O_FGKYqkWpReLt-aG4X7gmAyqwKAgWmG6Dw2Z2g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567"
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM"
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/hotel-booking-mgmt-service/rooms/available-rooms-by-date-and-type?checkInDate&checkOutDate&roomType=AC",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"hotel-booking-mgmt-service",
+								"rooms",
+								"available-rooms-by-date-and-type"
+							],
+							"query": [
+								{
+									"key": "checkInDate",
+									"value": null
+								},
+								{
+									"key": "checkOutDate",
+									"value": null
+								},
+								{
+									"key": "roomType",
+									"value": "AC"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MTc1MzYwMzUsImV4cCI6MTcxNzYzNjgzNX0.mErQV7K4XO1yF5IPVi95M5k5yrvZVlxig0dhk3mIcIY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567"
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM"
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/hotel-booking-mgmt-service/rooms/update/2?photoUrl=https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg&roomType=AC&roomPrice=5000&roomDescription=Room 1001, 3rd Floor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"hotel-booking-mgmt-service",
+								"rooms",
+								"update",
+								"2"
+							],
+							"query": [
+								{
+									"key": "photoUrl",
+									"value": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg"
+								},
+								{
+									"key": "roomType",
+									"value": "AC"
+								},
+								{
+									"key": "roomPrice",
+									"value": "5000"
+								},
+								{
+									"key": "roomDescription",
+									"value": "Room 1001, 3rd Floor"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MTc1MzYwMzUsImV4cCI6MTcxNzYzNjgzNX0.mErQV7K4XO1yF5IPVi95M5k5yrvZVlxig0dhk3mIcIY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Correlation-ID",
+								"value": "1234567"
+							},
+							{
+								"key": "capabilityConsumer",
+								"value": "HPM"
+							},
+							{
+								"key": "capabilityConsumerTimestamp",
+								"value": "2022-02-22T12:30:34"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/hotel-booking-mgmt-service/rooms/delete/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"hotel-booking-mgmt-service",
+								"rooms",
+								"delete",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
