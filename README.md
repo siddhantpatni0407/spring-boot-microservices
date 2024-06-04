@@ -19,6 +19,8 @@
 15. [spring-boot-excel-data-processor-service](#15-spring-boot-excel-data-processor-service)
 16. [spring-boot-jpa-multiple-database-service](#16-spring-boot-jpa-multiple-database-service)
 17. [spring-boot-event-service](#17-spring-boot-event-service)
+18. [spring-boot-hotel-booking-management-service](#18-spring-boot-hotel-booking-management-service)
+
 ---
 
 ## 1. spring-boot-email-service
@@ -71,3 +73,6 @@
 
 ## 17. spring-boot-event-service
 - Spring Boot application for event handling.
+
+## 18. spring-boot-hotel-booking-management-service
+- Spring Boot application for hotel booking management.
