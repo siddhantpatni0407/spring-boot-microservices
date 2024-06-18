@@ -23,17 +23,13 @@ public class AppConstants {
     public static final String UPDATE_ROOM_ENDPOINT = "/api/v1/hotel-booking-mgmt-service/rooms/update";
     public static final String DELETE_ROOM_ENDPOINT = "/api/v1/hotel-booking-mgmt-service/rooms/delete";
 
-
     public static final String BOOK_ROOM_ENDPOINT = "/api/v1/hotel-booking-mgmt-service/bookings/book-room";
     public static final String ALL_BOOKINGS_ENDPOINT = "/api/v1/hotel-booking-mgmt-service/bookings/all";
     public static final String GET_BOOKINGS_BY_CONFIRMATION_CODE_ENDPOINT = "/api/v1/hotel-booking-mgmt-service/bookings/get-by-confirmation-code";
     public static final String CANCEL_BOOKING_ENDPOINT = "/api/v1/hotel-booking-mgmt-service/bookings/cancel";
 
-
     public static final String REGISTER_ENDPOINT = "/api/v1/hotel-booking-mgmt-service/auth/register";
     public static final String LOGIN_ENDPOINT = "/api/v1/hotel-booking-mgmt-service/auth/login";
-
-
 
     public static final String DEFAULT_USER = "DEFAULT_USER";
     public static final String SUCCESSFUL = "Successful";

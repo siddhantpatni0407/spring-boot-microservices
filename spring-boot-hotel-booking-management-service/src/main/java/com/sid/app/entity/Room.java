@@ -15,18 +15,20 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 public class Room extends Auditable {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "room_type")
     private String roomType;
 
+    @Column(name = "room_price")
     private BigDecimal roomPrice;
 
     @Column(name = "room_photo_url")
     private String roomPhotoUrl;
 
+    @Column(name = "room_description")
     private String roomDescription;
 
     @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -42,6 +44,5 @@ public class Room extends Auditable {
                 ", description='" + roomDescription + '\'' +
                 '}';
     }
-
 
 }

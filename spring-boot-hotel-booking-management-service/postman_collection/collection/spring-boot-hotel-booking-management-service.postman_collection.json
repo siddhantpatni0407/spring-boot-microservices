@@ -32,7 +32,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"siddhant4patni@gmail.com\",\r\n    \"name\": \"Siddhant Patni\",\r\n    \"phoneNumber\": \"7588811796\",\r\n    \"password\": \"siddhant\",\r\n    \"role\": \"USER\"\r\n}",
+							"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"name\": \"Admin\",\r\n    \"phoneNumber\": \"7588811796\",\r\n    \"password\": \"admin\",\r\n    \"role\": \"ADMIN\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -113,7 +113,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MTc1MzIyNjUsImV4cCI6MTcxNzYzMzA2NX0.9jh_O_FGKYqkWpReLt-aG4X7gmAyqwKAgWmG6Dw2Z2g",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MTg3MzUzMzAsImV4cCI6MTcxODgzNjEzMH0.XntfpZ3FEkHN9QT31HNosioXNqIG5BKSKTwBS6USZWg",
 									"type": "string"
 								}
 							]

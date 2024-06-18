@@ -17,7 +17,6 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = true)
 public class Booking extends Auditable {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -73,4 +72,5 @@ public class Booking extends Auditable {
                 ", bookingConfirmationCode='" + bookingConfirmationCode + '\'' +
                 '}';
     }
+
 }
